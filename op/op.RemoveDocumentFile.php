@@ -58,6 +58,10 @@ if (($document->getAccessMode($user) < M_ALL)&&($user->getID()!=$file->getUserID
 	UI::exitError(getMLText("document_title", array("documentname" => $document->getName())),getMLText("access_denied"));
 }
 
+if (!$user->isAdmin()) {
+	UI::exitError(getMLText("document_title", array("documentname" => $document->getName())),getMLText("access_denied"));
+}
+
 /* Remove preview image. */
 require_once("SeedDMS/Preview.php");
 $previewer = new SeedDMS_Preview_Previewer($settings->_cacheDir);

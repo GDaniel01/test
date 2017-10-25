@@ -246,6 +246,12 @@ switch($command) {
 
 	case 'movefolder': /* {{{ */
 		if($user) {
+			if (!$user->isAdmin()) {
+				header('Content-Type: application/json');
+				echo json_encode(array('success'=>false, 'message'=>getMLText('access_denied'), 'data'=>''));
+				exit;
+			}
+
 			if(!checkFormKey('movefolder', 'GET')) {
 				header('Content-Type: application/json');
 				echo json_encode(array('success'=>false, 'message'=>getMLText('invalid_request_token'), 'data'=>''));
@@ -285,6 +291,12 @@ switch($command) {
 
 	case 'movedocument': /* {{{ */
 		if($user) {
+			if (!$user->isAdmin()) {
+				header('Content-Type: application/json');
+				echo json_encode(array('success'=>false, 'message'=>getMLText('access_denied'), 'data'=>''));
+				exit;
+			}
+
 			if(!checkFormKey('movedocument', 'GET')) {
 				header('Content-Type: application/json');
 				echo json_encode(array('success'=>false, 'message'=>getMLText('invalid_request_token'), 'data'=>''));
@@ -324,6 +336,12 @@ switch($command) {
 
 	case 'deletefolder': /* {{{ */
 		if($user) {
+			if (!$user->isAdmin()) {
+				header('Content-Type: application/json');
+				echo json_encode(array('success'=>false, 'message'=>getMLText('access_denied'), 'data'=>''));
+				exit;
+			}
+
 			if(!checkFormKey('removefolder', 'GET')) {
 				header('Content-Type: application/json');
 				echo json_encode(array('success'=>false, 'message'=>getMLText('invalid_request_token'), 'data'=>''));
@@ -371,6 +389,12 @@ switch($command) {
 
 	case 'deletedocument': /* {{{ */
 		if($user) {
+			if (!$user->isAdmin()) {
+				header('Content-Type: application/json');
+				echo json_encode(array('success'=>false, 'message'=>getMLText('access_denied'), 'data'=>''));
+				exit;
+			}
+
 			if(!checkFormKey('removedocument', 'GET')) {
 				header('Content-Type: application/json');
 				echo json_encode(array('success'=>false, 'message'=>getMLText('invalid_request_token'), 'data'=>''));

@@ -54,6 +54,10 @@ if ($folder->getAccessMode($user) < M_ALL) {
 	UI::exitError(getMLText("folder_title", array("foldername" => $folder->getName())),getMLText("access_denied"));
 }
 
+if (!$user->isAdmin()) {
+	UI::exitError(getMLText("document_title", array("documentname" => $document->getName())),getMLText("access_denied"));
+}
+
 if($settings->_enableFullSearch) {
 	$index = $indexconf['Indexer']::open($settings->_luceneDir);
 } else {
