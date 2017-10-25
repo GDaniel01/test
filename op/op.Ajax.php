@@ -246,6 +246,7 @@ switch($command) {
 
 	case 'movefolder': /* {{{ */
 		if($user) {
+			/* only admins can move folders */
 			if (!$user->isAdmin()) {
 				header('Content-Type: application/json');
 				echo json_encode(array('success'=>false, 'message'=>getMLText('access_denied'), 'data'=>''));
@@ -291,6 +292,7 @@ switch($command) {
 
 	case 'movedocument': /* {{{ */
 		if($user) {
+			/* only admins can move documents */
 			if (!$user->isAdmin()) {
 				header('Content-Type: application/json');
 				echo json_encode(array('success'=>false, 'message'=>getMLText('access_denied'), 'data'=>''));
@@ -336,6 +338,7 @@ switch($command) {
 
 	case 'deletefolder': /* {{{ */
 		if($user) {
+			/* only admins can delete folders */
 			if (!$user->isAdmin()) {
 				header('Content-Type: application/json');
 				echo json_encode(array('success'=>false, 'message'=>getMLText('access_denied'), 'data'=>''));
@@ -389,6 +392,7 @@ switch($command) {
 
 	case 'deletedocument': /* {{{ */
 		if($user) {
+			/* only admins can delete documents */
 			if (!$user->isAdmin()) {
 				header('Content-Type: application/json');
 				echo json_encode(array('success'=>false, 'message'=>getMLText('access_denied'), 'data'=>''));
