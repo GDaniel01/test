@@ -52,10 +52,9 @@ if(USE_PHP_SESSION) {
 	}
 }
 
+require 'Slim/Slim.php';
+\Slim\Slim::registerAutoloader();
 
-#require 'Slim/Slim.php';
-require "vendor/autoload.php";
-#\Slim\Slim::registerAutoloader();
 
 function doLogin() { /* {{{ */
 	global $app, $dms, $userobj, $session, $settings;
@@ -169,7 +168,9 @@ function getFolder($id) { /* {{{ */
 			$app->response()->header('Content-Type', 'application/json');
 			$data = array(
 				'id'=>$folder->getID(),
-				'name'=>$folder->getName()
+				'name'=>$folder->getName(),
+				'comment'=>$folder->getComment(),
+				'date'=>$folder->getDate()
 			);
 			echo json_encode(array('success'=>true, 'message'=>'', 'data'=>$data));
 		} else {
@@ -258,7 +259,7 @@ function getFolderChildren($id) { /* {{{ */
 					$recs[] = array(
 						'type'=>'folder',
 						'id'=>$subfolder->getId(),
-						'name'=>htmlspecialchars($subfolder->getName()),
+						'name'=>$subfolder->getName(),
 						'comment'=>$subfolder->getComment(),
 						'date'=>$subfolder->getDate(),
 					);
@@ -272,7 +273,7 @@ function getFolderChildren($id) { /* {{{ */
 							'type'=>'document',
 							'id'=>$document->getId(),
 							'date'=>$document->getDate(),
-							'name'=>htmlspecialchars($document->getName()),
+							'name'=>$document->getName(),
 							'mimetype'=>$lc->getMimeType(),
 							'version'=>$lc->getVersion(),
 							'size'=>$lc->getFileSize(),
@@ -292,6 +293,61 @@ function getFolderChildren($id) { /* {{{ */
 		}
 	}
 } /* }}} */
+
+
+
+
+
+function setFolderAttributes($id) { /* {{{ */
+	global $app, $dms, $userobj;
+
+	$app->response()->header('Content-Type', 'application/json');
+	
+	if(!$userobj) {
+		echo json_encode(array('success'=>false, 'message'=>'Not logged in', 'data'=>''));
+		return;
+	}
+
+	$folder = $dms->getFolder($id);
+
+	if (!$folder) {
+		echo json_encode(array('success'=>false, 'message'=>'Can not find folder', 'data'=>''));
+		return;
+	}
+
+	if ($folder->getAccessMode($userobj) < M_READWRITE) {
+		echo json_encode(array('success'=>false, 'message'=>'Can not write to this folder', 'data'=>''));
+		return;
+	} 	
+
+	if ($app->request()->put('attributes') == null)
+    	{
+        	echo json_encode(array('success'=>false, 'message'=>'You must PUT the new attributes', 'data'=>''));
+	        return; 
+    	}
+
+	$attributes = $app->request()->put('attributes');
+	
+	$result = true;
+
+	foreach($attributes as $attributeName=>$attributeValue) {
+		$attributeDefinition = $dms->getAttributeDefinitionByName($attributeName);
+		if($attributeDefinition) {
+			$result = $result && $folder->setAttributeValue($attributeDefinition, $attributeValue);
+		}
+	}
+
+	if (!$result) {
+		echo json_encode(array('success'=>false, 'message'=>'Not all attributes could be changed', 'data'=>''));
+		return;
+	}
+
+	echo json_encode(array('success'=>true, 'message'=>'', 'data'=>''));
+	return;
+
+} /* }}} */
+
+
 
 function createFolder($id) { /* {{{ */
 	global $app, $dms, $userobj;
@@ -322,15 +378,105 @@ function createFolder($id) { /* {{{ */
 				$rec = array('id'=>$folder->getId(), 'name'=>$folder->getName(), 'comment'=>$folder->getComment());
 				echo json_encode(array('success'=>true, 'message'=>'', 'data'=>$rec));
 			} else {
-				echo json_encode(array('success'=>false, 'message'=>'', 'data'=>''));
+				echo json_encode(array('success'=>false, 'message'=>'-1', 'data'=>''));
 			}
 		} else {
-			echo json_encode(array('success'=>false, 'message'=>'', 'data'=>''));
+			echo json_encode(array('success'=>false, 'message'=>'-2', 'data'=>''));
 		}
 	} else {
-		echo json_encode(array('success'=>false, 'message'=>'', 'data'=>''));
+		echo json_encode(array('success'=>false, 'message'=>'-3', 'data'=>''));
 	}
 } /* }}} */
+
+
+function renameFolder($id) { /* {{{ */
+	global $app, $dms, $userobj;
+
+	$app->response()->header('Content-Type', 'application/json');
+	
+	if(!$userobj) {
+		echo json_encode(array('success'=>false, 'message'=>'Not logged in', 'data'=>''));
+		return;
+	}
+
+	$folder = $dms->getFolder($id);
+
+	if (!$folder) {
+		echo json_encode(array('success'=>false, 'message'=>'Can not find folder', 'data'=>''));
+		return;
+	}
+
+	if ($folder->getAccessMode($userobj) < M_READWRITE) {
+		echo json_encode(array('success'=>false, 'message'=>'Can not write to this folder', 'data'=>''));
+		return;
+	} 	
+
+	if ($app->request()->put('newname') == null)
+    {
+        echo json_encode(array('success'=>false, 'message'=>'You must PUT a new folder name', 'data'=>''));
+        return; 
+    }
+
+	$newName = $app->request()->put('newname');
+
+	$result = $folder->setName($newName);
+	
+	if (!$result)
+	{
+        echo json_encode(array('success'=>false, 'message'=>'Rename operation failed', 'data'=>''));
+        return; 
+	}
+
+	echo json_encode(array('success'=>true, 'message'=>'Rename operation was successful', 'data'=>''));
+	return;
+
+} /* }}} */
+
+
+function setFolderComment($id) { /* {{{ */
+	global $app, $dms, $userobj;
+
+	$app->response()->header('Content-Type', 'application/json');
+	
+	if(!$userobj) {
+		echo json_encode(array('success'=>false, 'message'=>'Not logged in', 'data'=>''));
+		return;
+	}
+
+	$folder = $dms->getFolder($id);
+
+	if (!$folder) {
+		echo json_encode(array('success'=>false, 'message'=>'Can not find folder', 'data'=>''));
+		return;
+	}
+
+	if ($folder->getAccessMode($userobj) < M_READWRITE) {
+		echo json_encode(array('success'=>false, 'message'=>'Can not write to this folder', 'data'=>''));
+		return;
+	} 	
+
+	if ($app->request()->put('newcomment') == null)
+    {
+        echo json_encode(array('success'=>false, 'message'=>'You must PUT a new comment for the folder', 'data'=>''));
+        return; 
+    }
+
+	$newComment = $app->request()->put('newcomment');
+
+	$result = $folder->setComment($newComment);
+	
+	if (!$result)
+	{
+        echo json_encode(array('success'=>false, 'message'=>'Comment update operation failed', 'data'=>''));
+        return; 
+	}
+
+	echo json_encode(array('success'=>true, 'message'=>'Comment update operation was successful', 'data'=>''));
+	return;
+
+} /* }}} */
+
+
 
 function moveFolder($id) { /* {{{ */
 	global $app, $dms, $userobj;
