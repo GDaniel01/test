@@ -30,6 +30,20 @@ include("../inc/inc.ClassUI.php");
 include("../inc/inc.ClassController.php");
 include("../inc/inc.Authentication.php");
 
+
+/**
+ * Checks if a document can be downloaded
+ * Condition document is not locked or user is
+ * administrator
+ *
+ * @return boolean
+ */
+function canDownloadDocument($user, $document)
+{
+    return ($user->isAdmin() || !$document->isLocked());
+}
+
+
 $tmp = explode('.', basename($_SERVER['SCRIPT_FILENAME']));
 $controller = Controller::factory($tmp[1]);
 
@@ -63,6 +77,10 @@ if (isset($_GET["version"])) {
 	if (!is_object($content)) {
 		UI::exitError(getMLText("document_title", array("documentname" => $document->getName())),getMLText("invalid_version"));
 	}
+
+	if (!canDownloadDocument($user, $document)) {
+	    UI::exitError(getMLText("document_title", array("documentname" => $document->getName())),getMLText("invalid_action"));
+	}	
 
 	$controller->setParam('content', $content);
 	$controller->setParam('type', 'version');
@@ -103,6 +121,10 @@ if (isset($_GET["version"])) {
 	if(!file_exists($dms->contentDir . $file->getPath())) {
 		UI::exitError(getMLText("document_title", array("documentname" => $document->getName())),getMLText("missing_file"));
 	}
+
+	if (!canDownloadDocument($user, $document)) {
+	    UI::exitError(getMLText("document_title", array("documentname" => $document->getName())),getMLText("invalid_action"));
+	}	
 
 	header("Content-Type: application/force-download; name=\"" . $file->getOriginalFileName() . "\"");
 	header("Content-Transfer-Encoding: binary");
