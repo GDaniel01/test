@@ -1141,6 +1141,54 @@ function getAccountById($id) { /* {{{ */
     }
 } /* }}} */
 
+/**
+ * Updates the password of an existing Account, the password must be PUT as a md5 string
+ *
+ * @param      <type>  $id     The user name or numerical identifier
+ */
+function changeAccountPassword($id) { /* {{{ */
+    global $app, $dms, $userobj;
+
+    checkIfAdmin();
+
+    if ($app->request()->put('password') == null)
+    {
+        $app->response()->header('Content-Type', 'application/json');
+        echo json_encode(array('success'=>false, 'message'=>'You must PUT a new password', 'data'=>''));
+        return; 
+    }
+
+    $newPassword = $app->request()->put('password');
+
+    if(is_numeric($id))
+        $account = $dms->getUser($id);
+    else {
+        $account = $dms->getUserByLogin($id);
+    }
+
+    /**
+     * User not found
+     */
+    if (!$account) {
+    	$app->response()->status(404);
+    	return;
+    }
+
+    $operation = $account->setPwd($newPassword);
+
+    if (!$operation){
+		$app->response()->header('Content-Type', 'application/json');
+	    echo json_encode(array('success'=>false, 'message'=>'', 'data'=>'Could not change password.'));
+	    return;
+    }
+
+    $app->response()->header('Content-Type', 'application/json');
+    echo json_encode(array('success'=>true, 'message'=>'', 'data'=>''));
+
+    return;
+} /* }}} */
+
+
 function setDisabledAccount($id) { /* {{{ */
     global $app, $dms, $userobj;
     checkIfAdmin();
