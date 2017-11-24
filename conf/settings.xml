@@ -7,7 +7,7 @@
        - language: default language (name of a subfolder in folder "languages")
        - theme: default style (name of a subfolder in folder "styles")
     -->
-    <display siteName="CTK Dokumentenablage" footNote="Dokumentenverwaltung zur Projektdatenbank" printDisclaimer="true" language="de_DE" theme="bootstrap" previewWidthList="40" previewWidthDetail="100">  
+    <display siteName="CTK Dokumentenablage" footNote="Dokumentenverwaltung zur Projektdatenbank" printDisclaimer="true" language="de_DE" theme="bootstrap" previewWidthList="40" previewWidthDetail="100" availablelanguages="" showFullPreview="false" convertToPdf="false">  
     </display>
     <!-- strictFormCheck: Strict form checking. If set to true, then all fields in the form will be checked for a value. If set to false, then (most) comments and keyword fields become optional. Comments are always required when submitting a review or overriding document status.
        - viewOnlineFileTypes: files with one of the following endings can be viewed online (USE ONLY LOWER CASE CHARACTERS)
@@ -24,7 +24,7 @@
        - sortUsersInList: how to sort users in lists ('fullname' or '' (default))
        - sortFoldersDefault: how to sort folders and documents in folder view  ('n' (name) or 's' (sequence, default))
     -->   
-    <edition strictFormCheck="false" viewOnlineFileTypes=".txt;.text;.html;.htm;.pdf;.gif;.png;.jpg;.jpeg" enableConverting="true" enableEmail="true" enableUsersView="true" enableFullSearch="false" enableFolderTree="true" expandFolderTree="1" enableLanguageSelector="true" stopWordsFile="" sortUsersInList="" sortFoldersDefault="n" enableClipboard="true" enableDropUpload="true" enableRecursiveCount="true" maxRecursiveCount="0" enableThemeSelector="false" fullSearchEngine="lucene">
+    <edition strictFormCheck="false" viewOnlineFileTypes=".txt;.text;.html;.htm;.pdf;.gif;.png;.jpg;.jpeg" enableConverting="true" enableEmail="true" enableUsersView="true" enableFullSearch="false" enableFolderTree="true" expandFolderTree="1" enableLanguageSelector="true" stopWordsFile="" sortUsersInList="" sortFoldersDefault="n" enableClipboard="true" enableDropUpload="true" enableRecursiveCount="true" maxRecursiveCount="0" enableThemeSelector="false" fullSearchEngine="lucene" editOnlineFileTypes="" enableSessionList="false" enableMenuTasks="false" enableDropFolderList="false" enableMultiUpload="false" enableHelp="false" maxSizeForFullText="0" defaultSearchMethod="database" showSingleSearchHit="false">
     </edition> 
     <!-- enableCalendar: enable/disable calendar
        - calendarDefaultView: calendar default view ("w" for week,"m" for month,"y" for year)
@@ -47,7 +47,7 @@
        - logFileEnable: set false to disable log system
        - logFileRotation: the log file rotation (h=hourly, d=daily, m=monthly)
     -->
-    <server rootDir="/opt/seeddms43x/" httpRoot="/" contentDir="/seeddms_data/data/" stagingDir="/seeddms_data/data/staging/" luceneDir="/seeddms_data/data/lucene/" logFileEnable="true" logFileRotation="d" enableLargeFileUpload="true" partitionSize="2000000" cacheDir="" dropFolderDir="">
+    <server rootDir="/opt/seeddms43x/" httpRoot="/" contentDir="/seeddms_data/data/" stagingDir="/seeddms_data/data/staging/" luceneDir="/seeddms_data/data/lucene/" logFileEnable="true" logFileRotation="d" enableLargeFileUpload="true" partitionSize="2000000" cacheDir="" dropFolderDir="" maxUploadSize="">
     </server>
     
     <!-- enableGuestLogin: If you want anybody to login as guest, set the following line to true
@@ -62,7 +62,7 @@
 			 - passwordStrengthAlgorithm: algorithm used to calculate password strenght (simple or advanced)
 			 - encryptionKey: arbitrary string used for creating identifiers
     -->    
-    <authentication enableGuestLogin="false" enablePasswordForgotten="false" restricted="true" enableUserImage="false" disableSelfEdit="false" passwordStrength="0" passwordExpiration="0" passwordHistory="0" passwordStrengthAlgorithm="simple" loginFailure="0" encryptionKey="9c1f97893ee0e4a9b12997debec106af" quota="0" undelUserIds="" cookieLifetime="0">
+    <authentication enableGuestLogin="false" enablePasswordForgotten="false" restricted="true" enableUserImage="false" disableSelfEdit="false" passwordStrength="0" passwordExpiration="0" passwordHistory="0" passwordStrengthAlgorithm="simple" loginFailure="0" encryptionKey="9c1f97893ee0e4a9b12997debec106af" quota="0" undelUserIds="" cookieLifetime="0" enableGuestAutoLogin="false" autoLoginUser="0" defaultAccessDocs="0">
       <connectors>
         <!-- ***** CONNECTOR LDAP  *****
            - enable: enable/disable connector
@@ -93,13 +93,13 @@
        - dbUser: username for database-access
        - dbPass: password for database-access
     -->    
-    <database dbDriver="mysql" dbHostname="localhost" dbDatabase="seedms" dbUser="seedms" dbPass="s33dms" doNotCheckVersion="false">
+    <database dbDriver="mysql" dbHostname="localhost" dbDatabase="seeddms51" dbUser="seedms" dbPass="s33dms" doNotCheckVersion="false">
     </database>
     <!-- smtpServer: SMTP Server hostname
        - smtpPort: SMTP Server port
        - smtpSendFrom: Send from
     -->    
-    <smtp smtpServer="localhost" smtpPort="25" smtpSendFrom="seeddms@localhost"/>    
+    <smtp smtpServer="localhost" smtpPort="25" smtpSendFrom="seeddms@localhost" smtpUser="" smtpPassword=""/>    
   </system>
  
   
@@ -124,7 +124,7 @@
        - enableVersionModification: allow to modify versions after approval
        - enableDuplicateDocNames: allow duplicate names in a folder
     --> 
-    <edition enableAdminRevApp="true" versioningFileName="versioning_info.txt" workflowMode="advanced" enableVersionDeletion="false" enableVersionModification="false" enableDuplicateDocNames="false" enableOwnerRevApp="false" enableSelfRevApp="true" presetExpirationDate="" overrideMimeType="false">
+    <edition enableAdminRevApp="true" versioningFileName="versioning_info.txt" workflowMode="advanced" enableVersionDeletion="false" enableVersionModification="false" enableDuplicateDocNames="false" enableOwnerRevApp="false" enableSelfRevApp="true" presetExpirationDate="" overrideMimeType="false" enableUpdateRevApp="false" removeFromDropFolder="false">
     </edition>
 		<!-- enableNotificationAppRev: true to send notifation if a user is added as a reviewer or approver
 		-->
@@ -141,9 +141,9 @@
        - updateNotifyTime: users are notified about document-changes that took place within the last "updateNotifyTime" seconds
        - extraPath: Path to addtional software. This is the directory containing additional software like the adodb directory, or the pear Log package. This path will be added to the php include path
     -->
-    <server coreDir="" luceneClassDir="" contentOffsetDir="1048576" maxDirID="0" updateNotifyTime="86400" extraPath="" maxExecutionTime="30" cmdTimeout="1">
+    <server coreDir="" luceneClassDir="" contentOffsetDir="1048576" maxDirID="0" updateNotifyTime="86400" extraPath="/opt/seedms43x/pear" maxExecutionTime="30" cmdTimeout="1">
     </server>
-    <converters>
+    <converters target="fulltext">
 		 <converter mimeType="application/pdf">pdftotext -enc UTF-8 -nopgbrk %s - | sed -e 's/ [a-zA-Z0-9.]\{1\} / /g' -e 's/[0-9.]//g'</converter>
      <converter mimeType="application/msword">catdoc %s</converter>
      <converter mimeType="application/vnd.ms-excel">ssconvert -T Gnumeric_stf:stf_csv -S %s fd://1</converter>
@@ -154,4 +154,4 @@
 
   </advanced>
 
-</configuration>
+<extensions/></configuration>
