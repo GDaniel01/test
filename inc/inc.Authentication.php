@@ -129,10 +129,6 @@ if(file_exists($settings->_rootDir . "view/".$theme."/languages/" . $lang . "/la
  * it is not admin */
 
 if (!$user->isAdmin()) {
-
-	echo "DMS ist in Wartungsmodus. Bitte versuchen Sie es zu ein spätere Zeitpunkt sich anzumelden.";
-	exit;
-
 	if($settings->_passwordExpiration > 0) {
 		if(basename($_SERVER['SCRIPT_NAME']) != 'out.ForcePasswordChange.php' && basename($_SERVER['SCRIPT_NAME']) != 'op.EditUserData.php') {
 			$pwdexp = $user->getPwdExpiration();
