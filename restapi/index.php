@@ -302,7 +302,7 @@ function setFolderAttributes($id) { /* {{{ */
 	global $app, $dms, $userobj;
 
 	$app->response()->header('Content-Type', 'application/json');
-	
+
 	if(!$userobj) {
 		echo json_encode(array('success'=>false, 'message'=>'Not logged in', 'data'=>''));
 		return;
@@ -318,16 +318,16 @@ function setFolderAttributes($id) { /* {{{ */
 	if ($folder->getAccessMode($userobj) < M_READWRITE) {
 		echo json_encode(array('success'=>false, 'message'=>'Can not write to this folder', 'data'=>''));
 		return;
-	} 	
+	}
 
 	if ($app->request()->put('attributes') == null)
     	{
         	echo json_encode(array('success'=>false, 'message'=>'You must PUT the new attributes', 'data'=>''));
-	        return; 
+	        return;
     	}
 
 	$attributes = $app->request()->put('attributes');
-	
+
 	$result = true;
 
 	foreach($attributes as $attributeName=>$attributeValue) {
@@ -393,7 +393,7 @@ function renameFolder($id) { /* {{{ */
 	global $app, $dms, $userobj;
 
 	$app->response()->header('Content-Type', 'application/json');
-	
+
 	if(!$userobj) {
 		echo json_encode(array('success'=>false, 'message'=>'Not logged in', 'data'=>''));
 		return;
@@ -409,22 +409,22 @@ function renameFolder($id) { /* {{{ */
 	if ($folder->getAccessMode($userobj) < M_READWRITE) {
 		echo json_encode(array('success'=>false, 'message'=>'Can not write to this folder', 'data'=>''));
 		return;
-	} 	
+	}
 
 	if ($app->request()->put('newname') == null)
     {
         echo json_encode(array('success'=>false, 'message'=>'You must PUT a new folder name', 'data'=>''));
-        return; 
+        return;
     }
 
 	$newName = $app->request()->put('newname');
 
 	$result = $folder->setName($newName);
-	
+
 	if (!$result)
 	{
         echo json_encode(array('success'=>false, 'message'=>'Rename operation failed', 'data'=>''));
-        return; 
+        return;
 	}
 
 	echo json_encode(array('success'=>true, 'message'=>'Rename operation was successful', 'data'=>''));
@@ -437,7 +437,7 @@ function setFolderComment($id) { /* {{{ */
 	global $app, $dms, $userobj;
 
 	$app->response()->header('Content-Type', 'application/json');
-	
+
 	if(!$userobj) {
 		echo json_encode(array('success'=>false, 'message'=>'Not logged in', 'data'=>''));
 		return;
@@ -453,22 +453,22 @@ function setFolderComment($id) { /* {{{ */
 	if ($folder->getAccessMode($userobj) < M_READWRITE) {
 		echo json_encode(array('success'=>false, 'message'=>'Can not write to this folder', 'data'=>''));
 		return;
-	} 	
+	}
 
 	if ($app->request()->put('newcomment') == null)
     {
         echo json_encode(array('success'=>false, 'message'=>'You must PUT a new comment for the folder', 'data'=>''));
-        return; 
+        return;
     }
 
 	$newComment = $app->request()->put('newcomment');
 
 	$result = $folder->setComment($newComment);
-	
+
 	if (!$result)
 	{
         echo json_encode(array('success'=>false, 'message'=>'Comment update operation failed', 'data'=>''));
-        return; 
+        return;
 	}
 
 	echo json_encode(array('success'=>true, 'message'=>'Comment update operation was successful', 'data'=>''));
@@ -857,7 +857,7 @@ function getDocumentPreview($id, $version=0, $width=0) { /* {{{ */
 				$object = $document->getLatestContent();
 			if(!$object)
 				exit;
-			
+
 			if(!empty($width))
 				$previewer = new SeedDMS_Preview_Previewer($settings->_cacheDir, $width);
 			else
@@ -1095,8 +1095,8 @@ function createAccount() { /* {{{ */
     $language = $app->request()->post('language');
     $theme = $app->request()->post('theme');
     $comment = $app->request()->post('comment');
-    
-    $newAccount = $dms->addUser($userName, $password, $fullname, $email, $language, $theme, $comment);  
+
+    $newAccount = $dms->addUser($userName, $password, $fullname, $email, $language, $theme, $comment);
     if ($newAccount === false)
     {
         $app->response()->header('Content-Type', 'application/json');
@@ -1155,7 +1155,7 @@ function changeAccountPassword($id) { /* {{{ */
     {
         $app->response()->header('Content-Type', 'application/json');
         echo json_encode(array('success'=>false, 'message'=>'You must PUT a new password', 'data'=>''));
-        return; 
+        return;
     }
 
     $newPassword = $app->request()->put('password');
@@ -1196,22 +1196,22 @@ function setDisabledAccount($id) { /* {{{ */
     {
         $app->response()->header('Content-Type', 'application/json');
         echo json_encode(array('success'=>false, 'message'=>'You must PUT a disabled state', 'data'=>''));
-        return; 
+        return;
     }
-    
+
     $isDisabled = false;
     $status = $app->request()->put('disable');
     if ($status == 'true' || $status == '1')
     {
         $isDisabled = true;
     }
-    
+
     if(is_numeric($id))
         $account = $dms->getUser($id);
     else {
         $account = $dms->getUserByLogin($id);
     }
-    
+
     if($account) {
         $account->setDisabled($isDisabled);
         $data = array();
@@ -1233,8 +1233,8 @@ function createGroup() { /* {{{ */
     checkIfAdmin();
     $groupName = $app->request()->post('name');
     $comment = $app->request()->post('comment');
-    
-    $newGroup = $dms->addGroup($groupName, $comment);   
+
+    $newGroup = $dms->addGroup($groupName, $comment);
     if ($newGroup === false)
     {
         $app->response()->header('Content-Type', 'application/json');
@@ -1277,18 +1277,18 @@ function getGroup($id) { /* {{{ */
 function changeGroupMembership($id, $operationType) { /* {{{ */
     global $app, $dms, $userobj;
     checkIfAdmin();
-    
+
     if(is_numeric($id))
         $group = $dms->getGroup($id);
     else {
         $group = $dms->getGroupByName($id);
     }
-    
+
     if ($app->request()->put('userid') == null)
     {
         $app->response()->header('Content-Type', 'application/json');
         echo json_encode(array('success'=>false, 'message'=>'Please PUT the userid', 'data'=>''));
-        return; 
+        return;
     }
     $userId = $app->request()->put('userid');
     if(is_numeric($userId))
@@ -1296,12 +1296,12 @@ function changeGroupMembership($id, $operationType) { /* {{{ */
     else {
         $user = $dms->getUserByLogin($userId);
     }
-    
+
     if (!($group && $user)) {
         $app->response()->status(404);
     }
 
-    $operationResult = false; 
+    $operationResult = false;
 
     if ($operationType == 'add')
     {
@@ -1311,7 +1311,7 @@ function changeGroupMembership($id, $operationType) { /* {{{ */
     {
         $operationResult = $group->removeUser($user);
     }
-    
+
     if ($operationResult === false)
     {
         $app->response()->header('Content-Type', 'application/json');
@@ -1341,7 +1341,7 @@ function addUserToGroup($id) { /* {{{ */
 } /* }}} */
 
 function removeUserFromGroup($id) { /* {{{ */
-    changeGroupMembership($id, 'remove');   
+    changeGroupMembership($id, 'remove');
 } /* }}} */
 
 function setFolderInheritsAccess($id) { /* {{{ */
@@ -1351,29 +1351,30 @@ function setFolderInheritsAccess($id) { /* {{{ */
     {
         $app->response()->header('Content-Type', 'application/json');
         echo json_encode(array('success'=>false, 'message'=>'You must PUT an "enable" value', 'data'=>''));
-        return; 
+        return;
     }
-    
+
     $inherit = false;
     $status = $app->request()->put('enable');
     if ($status == 'true' || $status == '1')
     {
         $inherit = true;
     }
-    
+
     if(is_numeric($id))
         $folder = $dms->getFolder($id);
     else {
         $folder = $dms->getFolderByName($id);
     }
-    
+
     if($folder) {
         $folder->setInheritAccess($inherit);
         $folderId = $folder->getId();
         $folder = null;
         // reread from db
         $folder = $dms->getFolder($folderId);
-        $success = ($folder->inheritsAccess() == $inherit);
+		$success = ($folder->inheritsAccess() == $inherit);
+		$data = array();
         $app->response()->header('Content-Type', 'application/json');
         echo json_encode(array('success'=>$success, 'message'=>'', 'data'=>$data));
     } else {
@@ -1390,17 +1391,17 @@ function addGroupAccessToFolder($id) { /* {{{ */
 } /* }}} */
 
 function removeUserAccessFromFolder($id) { /* {{{ */
-    changeFolderAccess($id, 'remove', 'user');   
+    changeFolderAccess($id, 'remove', 'user');
 } /* }}} */
 
 function removeGroupAccessFromFolder($id) { /* {{{ */
-    changeFolderAccess($id, 'remove', 'group');   
+    changeFolderAccess($id, 'remove', 'group');
 } /* }}} */
 
 function changeFolderAccess($id, $operationType, $userOrGroup) { /* {{{ */
     global $app, $dms, $userobj;
     checkIfAdmin();
-    
+
     if(is_numeric($id))
         $folder = $dms->getfolder($id);
     else {
@@ -1410,7 +1411,7 @@ function changeFolderAccess($id, $operationType, $userOrGroup) { /* {{{ */
         $app->response()->status(404);
         return;
     }
-    
+
     $userOrGroupIdInput = $app->request()->put('id');
     if ($operationType == 'add')
     {
@@ -1418,14 +1419,14 @@ function changeFolderAccess($id, $operationType, $userOrGroup) { /* {{{ */
 	    {
 	        $app->response()->header('Content-Type', 'application/json');
 	        echo json_encode(array('success'=>false, 'message'=>'Please PUT the user or group Id', 'data'=>''));
-	        return; 
+	        return;
 	    }
 
 	    if ($app->request()->put('mode') == null)
 	    {
 	        $app->response()->header('Content-Type', 'application/json');
 	        echo json_encode(array('success'=>false, 'message'=>'Please PUT the access mode', 'data'=>''));
-	        return; 
+	        return;
 	    }
 
 	    $modeInput = $app->request()->put('mode');
@@ -1466,10 +1467,10 @@ function changeFolderAccess($id, $operationType, $userOrGroup) { /* {{{ */
     if (!$userOrGroupObj) {
         $app->response()->status(404);
         return;
-    } 
+    }
 	$userOrGroupId = $userOrGroupObj->getId();
 
-    $operationResult = false; 
+    $operationResult = false;
 
     if ($operationType == 'add' && $userOrGroup == 'user')
     {
@@ -1488,7 +1489,7 @@ function changeFolderAccess($id, $operationType, $userOrGroup) { /* {{{ */
     {
         $operationResult = $folder->removeAccess($userOrGroupId, false);
     }
-    
+
     if ($operationResult === false)
     {
         $app->response()->header('Content-Type', 'application/json');
@@ -1509,7 +1510,7 @@ function changeFolderAccess($id, $operationType, $userOrGroup) { /* {{{ */
 function clearFolderAccessList($id) { /* {{{ */
     global $app, $dms, $userobj;
     checkIfAdmin();
-        
+
     if(is_numeric($id))
         $folder = $dms->getFolder($id);
     else {
@@ -1525,7 +1526,7 @@ function clearFolderAccessList($id) { /* {{{ */
     $app->response()->header('Content-Type', 'application/json');
     if (!$operationResult)
     {
-    	echo json_encode(array('success'=>false, 'message'=>'Something went wrong. Could not clear access list for this folder.', 'data'=>$data));	
+    	echo json_encode(array('success'=>false, 'message'=>'Something went wrong. Could not clear access list for this folder.', 'data'=>$data));
     }
     echo json_encode(array('success'=>true, 'message'=>'', 'data'=>$data));
 } /* }}} */
@@ -1588,10 +1589,10 @@ $app->get('/groups/:id', 'getGroup');
 $app->put('/groups/:id/addUser', 'addUserToGroup');
 $app->put('/groups/:id/removeUser', 'removeUserFromGroup');
 $app->put('/folder/:id/setInherit', 'setFolderInheritsAccess');
-$app->put('/folder/:id/access/group/add', 'addGroupAccessToFolder'); // 
-$app->put('/folder/:id/access/user/add', 'addUserAccessToFolder'); // 
-$app->put('/folder/:id/access/group/remove', 'removeGroupAccessFromFolder'); 
-$app->put('/folder/:id/access/user/remove', 'removeUserAccessFromFolder'); 
+$app->put('/folder/:id/access/group/add', 'addGroupAccessToFolder'); //
+$app->put('/folder/:id/access/user/add', 'addUserAccessToFolder'); //
+$app->put('/folder/:id/access/group/remove', 'removeGroupAccessFromFolder');
+$app->put('/folder/:id/access/user/remove', 'removeUserAccessFromFolder');
 $app->put('/folder/:id/access/clear', 'clearFolderAccessList');
 $app->run();
 
