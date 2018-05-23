@@ -1559,12 +1559,15 @@ $app->get('/account', 'getAccount');
 $app->get('/search', 'doSearch');
 $app->get('/searchbyattr', 'doSearchByAttr');
 $app->get('/folder/:id', 'getFolder');
+$app->put('/folder/:id/rename', 'renameFolder');
+$app->put('/folder/:id/comment', 'setFolderComment');
 $app->post('/folder/:id/move', 'moveFolder');
 $app->delete('/folder/:id', 'deleteFolder');
 $app->get('/folder/:id/children', 'getFolderChildren');
 $app->get('/folder/:id/parent', 'getFolderParent');
 $app->get('/folder/:id/path', 'getFolderPath');
 $app->get('/folder/:id/attributes', 'getFolderAttributes');
+$app->put('/folder/:id/attributes', 'setFolderAttributes');
 $app->post('/folder/:id/createfolder', 'createFolder');
 $app->put('/folder/:id/document', 'uploadDocument');
 $app->get('/document/:id', 'getDocument');
@@ -1583,6 +1586,7 @@ $app->put('/account/email', 'setEmail');
 $app->get('/account/locked', 'getLockedDocuments');
 $app->post('/accounts', 'createAccount');
 $app->get('/accounts/:id', 'getAccountById');
+$app->put('/accounts/:id/password', 'changeAccountPassword');
 $app->put('/accounts/:id/disable', 'setDisabledAccount');
 $app->post('/groups', 'createGroup');
 $app->get('/groups/:id', 'getGroup');
@@ -1594,6 +1598,8 @@ $app->put('/folder/:id/access/user/add', 'addUserAccessToFolder'); //
 $app->put('/folder/:id/access/group/remove', 'removeGroupAccessFromFolder');
 $app->put('/folder/:id/access/user/remove', 'removeUserAccessFromFolder');
 $app->put('/folder/:id/access/clear', 'clearFolderAccessList');
+$app->put('/folder/:id/access/default', 'setFolderDefaultAccess');
+$app->get('/folder/:id/access/default_get', 'getFolderDefaultAccess');
 $app->run();
 
 ?>
