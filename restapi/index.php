@@ -1531,6 +1531,49 @@ function clearFolderAccessList($id) { /* {{{ */
     echo json_encode(array('success'=>true, 'message'=>'', 'data'=>$data));
 } /* }}} */
 
+
+function setFolderDefaultAccess($id) { /* {{{ */
+    global $app, $dms, $userobj;
+    checkIfAdmin();
+
+    if(is_numeric($id))
+        $folder = $dms->getFolder($id);
+    else {
+        $folder = $dms->getFolderByName($id);
+    }
+    if (!$folder)
+    {
+        $app->response()->status(404);
+        return;
+    }
+    $operationResult = $folder->SetDefaultAccess(1);
+    $data = array();
+    $app->response()->header('Content-Type', 'application/json');
+    if (!$operationResult)
+    {
+        echo json_encode(array('success'=>false, 'message'=>'Something went wrong. Could not clear access list for this folder.', 'data'=>$data));
+    }
+    echo json_encode(array('success'=>true, 'message'=>'', 'data'=>$data));
+} /* }}} */
+
+function getFolderDefaultAccess($id) { /* {{{ */
+        global $app, $dms, $userobj;
+        checkIfAdmin();
+        if(is_numeric($id))
+                $folder = $dms->getFolder($id);
+        else {
+                $folder = $dms->getFolderByName($id);
+        }
+        if($folder) {
+                $data = array();
+                $data['perm'] = $folder->getDefaultAccess();
+                $app->response()->header('Content-Type', 'application/json');
+                echo json_encode(array('success'=>true, 'message'=>'', 'data'=>$data));
+        } else {
+                $app->response()->status(404);
+        }
+} /* }}} */
+
 //$app = new Slim(array('mode'=>'development', '_session.handler'=>null));
 $app = new \Slim\Slim(array('mode'=>'development', '_session.handler'=>null));
 
