@@ -10,6 +10,7 @@
   surrounding tr tag
 - do not be strict anymore when checking if config value of extension is
   in list of possible values (Closes #413)
+- mtime of files and folders can be taken over when importing from filesystem
 
 --------------------------------------------------------------------------------
                      Changes in version 5.1.8
