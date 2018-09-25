@@ -486,7 +486,7 @@ $this->showStartPaneContent('site', (!$currenttab || $currenttab == 'site'));
 									echo "<select class=\"chzn-select\" name=\"extensions[".$extname."][".$confkey."][]\"".(!empty($conf['multiple']) ? "  multiple" : "").(!empty($conf['size']) ? "  size=\"".$conf['size']."\"" : "").">";
 									foreach($conf['options'] as $key=>$opt) {
 										echo "<option value=\"".$key."\"";
-										if(in_array($key, $selections, true))
+										if(in_array($key, $selections))
 											echo " selected";
 										echo ">".htmlspecialchars($opt)."</option>";
 									}
