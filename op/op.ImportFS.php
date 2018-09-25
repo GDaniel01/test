@@ -94,6 +94,8 @@ function import_folder($dirname, $folder, $setfiledate, $setfolderdate) { /* {{{
 					if($setfiledate) {
 						$newdoc = $res[0];
 						$newdoc->setDate(filemtime($path));
+						$lc = $newdoc->getLatestContent();
+						$lc->setDate(filemtime($path));
 					}
 				} else {
 					return false;
