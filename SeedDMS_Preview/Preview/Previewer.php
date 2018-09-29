@@ -52,7 +52,7 @@ class SeedDMS_Preview_Previewer extends SeedDMS_Preview_Base {
 	 * @param integer $width width of preview image
 	 * @return string file name of preview image
 	 */
-	protected function getFileName($object, $width) { /* {{{ */
+	public function getFileName($object, $width) { /* {{{ */
 		if(!$object)
 			return false;
 
