@@ -68,7 +68,7 @@ if (isset($_COOKIE["mydms_session"])) {
 	}
 
 	if($settings->_enableEmail) {
-		$notifier->addService(new SeedDMS_EmailNotify($dms));
+		$notifier->addService(new SeedDMS_EmailNotify($dms, $settings->_smtpSendFrom, $settings->_smtpServer, $settings->_smtpPort, $settings->_smtpUser, $settings->_smtpPassword));
 	}
 
 	if(isset($GLOBALS['SEEDDMS_HOOKS']['notification'])) {
