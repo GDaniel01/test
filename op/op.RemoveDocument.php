@@ -75,7 +75,9 @@ require_once("SeedDMS/Preview.php");
 $previewer = new SeedDMS_Preview_Previewer($settings->_cacheDir);
 $previewer->deleteDocumentPreviews($document);
 
-/* Get the notify list before removing the document */
+/* Get the notify list before removing the document
+ * Also inform the users/groups of the parent folder
+ */
 $dnl =	$document->getNotifyList();
 $fnl =	$folder->getNotifyList();
 $nl = array(

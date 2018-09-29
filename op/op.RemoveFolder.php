@@ -71,10 +71,17 @@ require_once("SeedDMS/Preview.php");
 $previewer = new SeedDMS_Preview_Previewer($settings->_cacheDir);
 $dms->addCallback('onPreRemoveDocument', 'removePreviews', array($previewer));
 
-/* save this for notification later on */
-$nl =	$folder->getNotifyList();
+/* Get the notify list before removing the folder
+ * Also inform the users/groups of the parent folder
+ */
 $parent=$folder->getParent();
 $foldername = $folder->getName();
+$fnl =	$folder->getNotifyList();
+$pnl =	$parent->getNotifyList();
+$nl = array(
+	'users'=>array_merge($fnl['users'], $pnl['users']),
+	'groups'=>array_merge($fnl['groups'], $pnl['groups'])
+);
 
 $controller->setParam('folder', $folder);
 $controller->setParam('index', $index);

@@ -347,7 +347,12 @@ switch($command) {
 				if($folder) {
 					if ($folder->getAccessMode($user, 'removeFolder') >= M_READWRITE) {
 						$parent=$folder->getParent();
-						$nl =	$folder->getNotifyList();
+						$fnl =	$folder->getNotifyList();
+						$pnl =	$parent->getNotifyList();
+						$nl = array(
+							'users'=>array_merge($fnl['users'], $pnl['users']),
+							'groups'=>array_merge($fnl['groups'], $pnl['groups'])
+						);
 						$foldername = $folder->getName();
 						if($folder->remove()) {
 							if ($notifier) {
