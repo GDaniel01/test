@@ -81,7 +81,13 @@ $(document).ready( function() {
 		$this->contentHeading(getMLText("edit_existing_notify"));
 
 		$userNotifyIDs = array();
+		foreach ($notifyList["users"] as $userNotify) {
+			$userNotifyIDs[] = $userNotify->getID();
+		}
 		$groupNotifyIDs = array();
+		foreach ($notifyList["groups"] as $groupNotify) {
+			$groupNotifyIDs[] = $groupNotify->getID();
+		}
 
 		echo "<div class=\"row-fluid\">\n";
 		echo "<div class=\"span6\">\n";
@@ -114,7 +120,6 @@ $(document).ready( function() {
 				'options'=>$options
 			)
 		);
-
 		$options = array();
 		$options[] = array('-1', getMLText("select_one"));
 		$allGroups = $dms->getAllGroups();
@@ -160,7 +165,6 @@ $(document).ready( function() {
 					print "</form>\n";
 				}else print "<td></td>";
 				print "</tr>";
-				$userNotifyIDs[] = $userNotify->getID();
 			}
 			foreach ($notifyList["groups"] as $groupNotify) {
 				print "<tr>";
@@ -174,11 +178,10 @@ $(document).ready( function() {
 					print "<input type=\"hidden\" name=\"groupid\" value=\"".$groupNotify->getID()."\">\n";
 					print "<td>";
 					print "<button type=\"submit\" class=\"btn btn-mini\"><i class=\"icon-remove\"></i> ".getMLText("delete")."</button>";
-					print "</form>\n";
 					print "</td>";
+					print "</form>\n";
 				}else print "<td></td>";
 				print "</tr>";
-				$groupNotifyIDs[] = $groupNotify->getID();
 			}
 		}
 		print "</table>\n";
