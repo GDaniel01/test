@@ -11,6 +11,8 @@
 - do not be strict anymore when checking if config value of extension is
   in list of possible values (Closes #413)
 - mtime of files and folders can be taken over when importing from filesystem
+- fix sending emails in op/op.Ajax.php (Closes #417)
+- inform subscribers of parent folder if a folder is deleted (Closes #416)
 
 --------------------------------------------------------------------------------
                      Changes in version 5.1.8
