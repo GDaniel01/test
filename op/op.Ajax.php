@@ -350,8 +350,8 @@ switch($command) {
 						$fnl =	$folder->getNotifyList();
 						$pnl =	$parent->getNotifyList();
 						$nl = array(
-							'users'=>array_merge($fnl['users'], $pnl['users']),
-							'groups'=>array_merge($fnl['groups'], $pnl['groups'])
+							'users'=>array_unique(array_merge($fnl['users'], $pnl['users']), SORT_REGULAR),
+							'groups'=>array_unique(array_merge($fnl['groups'], $pnl['groups']), SORT_REGULAR)
 						);
 						$foldername = $folder->getName();
 						if($folder->remove()) {
@@ -403,8 +403,8 @@ switch($command) {
 						$dnl =	$document->getNotifyList();
 						$fnl =	$folder->getNotifyList();
 						$nl = array(
-							'users'=>array_merge($dnl['users'], $fnl['users']),
-							'groups'=>array_merge($dnl['groups'], $fnl['groups'])
+							'users'=>array_unique(array_merge($dnl['users'], $fnl['users']), SORT_REGULAR),
+							'groups'=>array_unique(array_merge($dnl['groups'], $fnl['groups']), SORT_REGULAR)
 						);
 						$docname = $document->getName();
 						if($document->remove()) {
@@ -685,8 +685,8 @@ switch($command) {
 						$fnl = $folder->getNotifyList();
 						$dnl = $document->getNotifyList();
 						$nl = array(
-							'users'=>array_merge($dnl['users'], $fnl['users']),
-							'groups'=>array_merge($dnl['groups'], $fnl['groups'])
+							'users'=>array_unique(array_merge($dnl['users'], $fnl['users']), SORT_REGULAR),
+							'groups'=>array_unique(array_merge($dnl['groups'], $fnl['groups']), SORT_REGULAR)
 						);
 
 						$subject = "new_document_email_subject";

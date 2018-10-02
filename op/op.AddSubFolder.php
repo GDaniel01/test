@@ -111,7 +111,12 @@ if(!$subFolder = $controller->run()) {
 } else {
 	// Send notification to subscribers.
 	if($notifier) {
-		$notifyList = $folder->getNotifyList();
+		$fnl = $folder->getNotifyList();
+		$snl = $subFolder->getNotifyList();
+		$nl = array(
+			'users'=>array_unique(array_merge($snl['users'], $fnl['users']), SORT_REGULAR),
+			'groups'=>array_unique(array_merge($snl['groups'], $fnl['groups']), SORT_REGULAR)
+		);
 
 		$subject = "new_subfolder_email_subject";
 		$message = "new_subfolder_email_body";
@@ -124,8 +129,8 @@ if(!$subFolder = $controller->run()) {
 		$params['url'] = "http".((isset($_SERVER['HTTPS']) && (strcmp($_SERVER['HTTPS'],'off')!=0)) ? "s" : "")."://".$_SERVER['HTTP_HOST'].$settings->_httpRoot."out/out.ViewFolder.php?folderid=".$subFolder->getID();
 		$params['sitename'] = $settings->_siteName;
 		$params['http_root'] = $settings->_httpRoot;
-		$notifier->toList($user, $notifyList["users"], $subject, $message, $params);
-		foreach ($notifyList["groups"] as $grp) {
+		$notifier->toList($user, $nl["users"], $subject, $message, $params);
+		foreach ($nl["groups"] as $grp) {
 			$notifier->toGroup($user, $grp, $subject, $message, $params);
 		}
 	}

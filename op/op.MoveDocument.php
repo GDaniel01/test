@@ -70,8 +70,8 @@ if ($targetid != $oldFolder->getID()) {
 			$nl2 = $document->getNotifyList();
 			$nl3 = $targetFolder->getNotifyList();
 			$nl = array(
-				'users'=>array_merge($nl1['users'], $nl2['users'], $nl3['users']),
-				'groups'=>array_merge($nl1['groups'], $nl2['groups'], $nl3['groups'])
+				'users'=>array_unique(array_merge($nl1['users'], $nl2['users'], $nl3['users']), SORT_REGULAR),
+				'groups'=>array_unique(array_merge($nl1['groups'], $nl2['groups'], $nl3['groups']), SORT_REGULAR)
 			);
 			$subject = "document_moved_email_subject";
 			$message = "document_moved_email_body";

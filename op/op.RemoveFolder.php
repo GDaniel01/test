@@ -79,8 +79,8 @@ $foldername = $folder->getName();
 $fnl =	$folder->getNotifyList();
 $pnl =	$parent->getNotifyList();
 $nl = array(
-	'users'=>array_merge($fnl['users'], $pnl['users']),
-	'groups'=>array_merge($fnl['groups'], $pnl['groups'])
+	'users'=>array_unique(array_merge($fnl['users'], $pnl['users']), SORT_REGULAR),
+	'groups'=>array_unique(array_merge($fnl['groups'], $pnl['groups']), SORT_REGULAR)
 );
 
 $controller->setParam('folder', $folder);

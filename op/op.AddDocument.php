@@ -258,7 +258,7 @@ $docsource = 'upload';
 
 if($settings->_dropFolderDir) {
 	if(isset($_POST["dropfolderfileform1"]) && $_POST["dropfolderfileform1"]) {
-		$fullfile = $settings->_dropFolderDir.'/'.$user->getLogin().'/'.$_POST["dropfolderfileform1"];
+		$fullfile = $settings->_dropFolderDir.'/'.$user->getLogin().'/'.$folder->getID().'/'.$_POST["dropfolderfileform1"];
 		if(file_exists($fullfile)) {
 			$docsource = 'dropfolder';
 			/* Check if a local file is uploaded as well */
@@ -390,8 +390,8 @@ for ($file_num=0;$file_num<count($_FILES["userfile"]["tmp_name"]);$file_num++){
 			$fnl = $folder->getNotifyList();
 			$dnl = $document->getNotifyList();
 			$nl = array(
-				'users'=>array_merge($dnl['users'], $fnl['users']),
-				'groups'=>array_merge($dnl['groups'], $fnl['groups'])
+				'users'=>array_unique(array_merge($dnl['users'], $fnl['users']), SORT_REGULAR),
+				'groups'=>array_unique(array_merge($dnl['groups'], $fnl['groups']), SORT_REGULAR)
 			);
 
 			$subject = "new_document_email_subject";

@@ -81,8 +81,8 @@ $previewer->deleteDocumentPreviews($document);
 $dnl =	$document->getNotifyList();
 $fnl =	$folder->getNotifyList();
 $nl = array(
-	'users'=>array_merge($dnl['users'], $fnl['users']),
-	'groups'=>array_merge($dnl['groups'], $fnl['groups'])
+	'users'=>array_unique(array_merge($dnl['users'], $fnl['users']), SORT_REGULAR),
+	'groups'=>array_unique(array_merge($dnl['groups'], $fnl['groups']), SORT_REGULAR)
 );
 $docname = $document->getName();
 
