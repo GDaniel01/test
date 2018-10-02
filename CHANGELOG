@@ -16,6 +16,9 @@
 - remove duplicate subscribers from notification list (Closes #415)
 - inform subscriber of a folder which has been added, previously only the
   subscribers of the parent folder were informed.
+- do not make subscribers of docs/folders selectable anymore if they are
+  already subscribed (Closes #414)
+- use the same layout for class.FolderNotify.php as for class.DocumentNotify.php
 
 --------------------------------------------------------------------------------
                      Changes in version 5.1.8
