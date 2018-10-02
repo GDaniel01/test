@@ -13,6 +13,9 @@
 - mtime of files and folders can be taken over when importing from filesystem
 - fix sending emails in op/op.Ajax.php (Closes #417)
 - inform subscribers of parent folder if a folder is deleted (Closes #416)
+- remove duplicate subscribers from notification list (Closes #415)
+- inform subscriber of a folder which has been added, previously only the
+  subscribers of the parent folder were informed.
 
 --------------------------------------------------------------------------------
                      Changes in version 5.1.8
