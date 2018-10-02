@@ -19,6 +19,7 @@
 - do not make subscribers of docs/folders selectable anymore if they are
   already subscribed (Closes #414)
 - use the same layout for class.FolderNotify.php as for class.DocumentNotify.php
+- add another hook for sending the notification email (Closes #419)
 
 --------------------------------------------------------------------------------
                      Changes in version 5.1.8
