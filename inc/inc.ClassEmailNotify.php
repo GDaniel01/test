@@ -129,7 +129,16 @@ class SeedDMS_EmailNotify extends SeedDMS_Notify {
 		} else {
 			$mail = Mail::factory('mail', $mail_params);
 		}
- 
+
+		if (isset($GLOBALS['SEEDDMS_HOOKS']['mailqueue'])) {
+			foreach($GLOBALS['SEEDDMS_HOOKS']['mailqueue'] as $queueService) {
+        if(method_exists($queueService, 'queueMailJob')) {
+					$ret = $queueService->queueMailJob($mail_params, $to, $headers, getMLText($subject, $params, "", $lang), $message);
+					if($ret !== null)
+						return $ret;
+        }
+			}
+		}
 		$result = $mail->send($to, $headers, $message);
 		if (PEAR::isError($result)) {
 			return false;
