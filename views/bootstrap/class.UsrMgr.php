@@ -43,7 +43,7 @@ function checkForm()
 
 	if($("#login").val() == "") msg.push("<?php printMLText("js_no_login");?>");
 	if(($("#userid").val() == "0") && ($("#pwd").val() == "")) msg.push("<?php printMLText("js_no_pwd");?>");
-	if(($("#pwd").val() != $("#pwdconf").val())&&($("#pwd").val() != "")&&($("#pwd").val() != "")) msg.push("<?php printMLText("js_pwd_not_conf");?>");
+	if(($("#pwd").val() != $("#pwdconf").val())&&($("#pwd").val() != "")&&($("#pwdconf").val() != "")) msg.push("<?php printMLText("js_pwd_not_conf");?>");
 	if($("#name").val() == "") msg.push("<?php printMLText("js_no_name");?>");
 	if($("#email").val() == "") msg.push("<?php printMLText("js_no_email");?>");
 <?php
