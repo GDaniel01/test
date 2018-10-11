@@ -1470,10 +1470,6 @@ class SeedDMS_Core_Document extends SeedDMS_Core_Object { /* {{{ */
 			}
 		}
 
-		// TODO - verify
-		if ($this->_dms->enableConverting && in_array($docResultSet->getContent()->getFileType(), array_keys($this->_dms->convertFileTypes)))
-			$docResultSet->getContent()->convert(); // Even if if fails, do not return false
-
 		$queryStr = "INSERT INTO `tblDocumentStatus` (`documentID`, `version`) ".
 			"VALUES (". $this->_id .", ". (int) $version .")";
 		if (!$db->getResult($queryStr)) {
@@ -2814,69 +2810,6 @@ class SeedDMS_Core_DocumentContent extends SeedDMS_Core_Object { /* {{{ */
 		$this->_comment = $newComment;
 
 		return true;
-	} /* }}} */
-
-	/**
-	 * This function is deprecated
-	 */
-	function convert() { /* {{{ */
-		if (file_exists($this->_document->_dms->contentDir . $this->_document->getID() .'/' . "index.html"))
-			return true;
-
-		if (!in_array($this->_fileType, array_keys($this->_document->_dms->convertFileTypes)))
-			return false;
-
-		$source = $this->_document->_dms->contentDir . $this->_document->getID() .'/' . $this->getFileName();
-		$target = $this->_document->_dms->contentDir . $this->_document->getID() .'/' . "index.html";
-	//	$source = str_replace("/", "\\", $source);
-	//	$target = str_replace("/", "\\", $target);
-
-		$command = $this->_document->_dms->convertFileTypes[$this->_fileType];
-		$command = str_replace("{SOURCE}", "\"$source\"", $command);
-		$command = str_replace("{TARGET}", "\"$target\"", $command);
-
-		$output = array();
-		$res = 0;
-		exec($command, $output, $res);
-
-		if ($res != 0) {
-			print (implode("\n", $output));
-			return false;
-		}
-		return true;
-	} /* }}} */
-
-	/* FIXME: this function should not be part of the DMS. It lies in the duty
-	 * of the application whether a file can be viewed online or not.
-	 */
-	function viewOnline() { /* {{{ */
-		if (!isset($this->_document->_dms->_viewOnlineFileTypes) || !is_array($this->_document->_dms->_viewOnlineFileTypes)) {
-			return false;
-		}
-
-		if (in_array(strtolower($this->_fileType), $this->_document->_dms->_viewOnlineFileTypes))
-			return true;
-
-		if ($this->_document->_dms->enableConverting && in_array($this->_fileType, array_keys($this->_document->_dms->convertFileTypes)))
-			if ($this->wasConverted()) return true;
-
-		return false;
-	} /* }}} */
-
-	function wasConverted() { /* {{{ */
-		return file_exists($this->_document->_dms->contentDir . $this->_document->getID() .'/' . "index.html");
-	} /* }}} */
-
-	/**
-	 * This function is deprecated
-	 */
-	function getURL() { /* {{{ */
-		if (!$this->viewOnline())return false;
-
-		if (in_array(strtolower($this->_fileType), $this->_document->_dms->_viewOnlineFileTypes))
-			return "/" . $this->_document->getID() . "/" . $this->_version . "/" . $this->getOriginalFileName();
-		else
-			return "/" . $this->_document->getID() . "/" . $this->_version . "/index.html";
 	} /* }}} */
 
 	/**

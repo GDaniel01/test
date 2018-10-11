@@ -27,6 +27,7 @@
 context can be passed to getAccessMode()
 call hook in SeedDMS_Core_Folder::getAccessMode()
 new optional parameter $listguest for SeedDMS_Core_Document::getReadAccessList()
+remove deprecated methods SeedDMS_Core_Document::convert(), SeedDMS_Core_Document::wasConverted(), SeedDMS_Core_Document::viewOnline(), SeedDMS_Core_Document::getUrl()
  </notes>
  <contents>
   <dir baseinstalldir="SeedDMS" name="/">
