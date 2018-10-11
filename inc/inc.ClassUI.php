@@ -137,9 +137,10 @@ class UI extends UI_Default {
 	} /* }}} */
 
 	static function exitError($pagetitle, $error, $noexit=false, $plain=false) {
-		global $theme, $dms;
+		global $theme, $dms, $user;
 		$view = UI::factory($theme, 'ErrorDlg');
 		$view->setParam('dms', $dms);
+		$view->setParam('user', $user);
 		$view->setParam('pagetitle', $pagetitle);
 		$view->setParam('errormsg', $error);
 		$view->setParam('plain', $plain);
