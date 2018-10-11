@@ -164,14 +164,17 @@ class SeedDMS_View_Statistic extends SeedDMS_Bootstrap_Style {
 		$this->storage_size=0;
 ?>
 <style type="text/css">
-.folderClass {
-	list-style-image : url(<?php $this->printImgPath("folder_closed.gif");?>);
-	list-style : url(<?php $this->printImgPath("folder_closed.gif");?>);
+li.documentClass, li.folderClass {
+	margin: 0;
+	padding: 4px 0 4px 30px;
+	list-style: none;
+	background-image: url("<?php $this->printImgPath("text-x-preview.svg");?>");
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-size: 24px;
 }
-
-.documentClass {
-	list-style-image : url(<?php $this->printImgPath("file.gif");?>);
-	list-style : url(<?php $this->printImgPath("file.gif");?>);
+li.folderClass {
+	background-image: url("<?php $this->printImgPath("folder.svg");?>");
 }
 </style>
 

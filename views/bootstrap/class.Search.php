@@ -487,7 +487,6 @@ class SeedDMS_View_Search extends SeedDMS_Bootstrap_Style {
 							$comment = htmlspecialchars($document->getComment());
 						if (strlen($comment) > 150) $comment = substr($comment, 0, 147) . "...";
 						print "<tr id=\"table-row-document-".$document->getID()."\" class=\"table-row-document\" rel=\"document_".$document->getID()."\" formtoken=\"".createFormKey('movedocument')."\" draggable=\"true\">";
-						//print "<td><img src=\"../out/images/file.gif\" class=\"mimeicon\"></td>";
 						if (in_array(2, $searchin)) {
 							$docName = $this->markQuery(htmlspecialchars($document->getName()), "i");
 						} else {

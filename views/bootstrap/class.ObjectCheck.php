@@ -43,7 +43,7 @@ class SeedDMS_View_ObjectCheck extends SeedDMS_Bootstrap_Style {
 			array_shift($tmparr);
 			if(count($tmparr) != count(array_unique($tmparr))) {
 				print "<tr>\n";
-				print "<td><a class=\"standardText\" href=\"../out/out.ViewFolder.php?folderid=".$folder->getID()."\"><img src=\"../out/images/folder_closed.gif\" width=18 height=18 border=0></a></td>";
+				print "<td><a class=\"standardText\" href=\"../out/out.ViewFolder.php?folderid=".$folder->getID()."\"><img src=\"".$this->getImgPath("folder.svg")."\" width=18 height=18 border=0></a></td>";
 				print "<td><a class=\"standardText\" href=\"../out/out.ViewFolder.php?folderid=".$folder->getID()."\">";
 				print htmlspecialchars($path);
 				print "</a></td>";
@@ -63,7 +63,7 @@ class SeedDMS_View_ObjectCheck extends SeedDMS_Bootstrap_Style {
 			if($folderList != $path) {
 				print "<tr>\n";
 				$this->needsrepair = true;
-				print "<td><a class=\"standardText\" href=\"../out/out.ViewFolder.php?folderid=".$folder->getID()."\"><img src=\"../out/images/folder_closed.gif\" width=18 height=18 border=0></a></td>";
+				print "<td><a class=\"standardText\" href=\"../out/out.ViewFolder.php?folderid=".$folder->getID()."\"><img src=\"".$this->getImgPath("folder.svg")."\" width=18 height=18 border=0></a></td>";
 				print "<td><a class=\"standardText\" href=\"../out/out.ViewFolder.php?folderid=".$folder->getID()."\">";
 				$tmppath = $folder->getPath();
 				for ($i = 1; $i  < count($tmppath); $i++) {
@@ -97,7 +97,7 @@ class SeedDMS_View_ObjectCheck extends SeedDMS_Bootstrap_Style {
 				print "<tr>\n";
 				$this->needsrepair = true;
 				$lc = $document->getLatestContent();
-				print "<td><a class=\"standardText\" href=\"../out/out.ViewDocument.php?documentid=".$document->getID()."\"><img class=\"mimeicon\" src=\"../out/images/icons/".$this->getMimeIcon($lc->getFileType())."\" title=\"".$lc->getMimeType()."\"></a></td>";
+				print "<td><a class=\"standardText\" href=\"../out/out.ViewDocument.php?documentid=".$document->getID()."\"><img class=\"mimeicon\" src=\"".$this->getMimeIcon($lc->getFileType())."\" title=\"".$lc->getMimeType()."\"></a></td>";
 				print "<td><a class=\"standardText\" href=\"../out/out.ViewDocument.php?documentid=".$document->getID()."\">/";
 				$folder = $document->getFolder();
 				$tmppath = $folder->getPath();
