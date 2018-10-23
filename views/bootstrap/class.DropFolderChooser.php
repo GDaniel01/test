@@ -64,7 +64,7 @@ $('.folderselect').click(function(ev) {
 
 		$c = 0; // count files
 		$filecontent = '';
-		$dir = $dropfolderdir.'/'.$user->getLogin();
+		$dir = rtrim($dropfolderdir, '/').'/'.$user->getLogin();
 		/* Check if we are still looking in the configured directory and
 		 * not somewhere else, e.g. if the login was '../test'
 		 */
