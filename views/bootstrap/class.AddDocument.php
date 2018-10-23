@@ -176,11 +176,15 @@ $(document).ready(function() {
 		$msg = getMLText("max_upload_size").": ".ini_get( "upload_max_filesize");
 		$this->warningMsg($msg);
 		$this->contentHeading(getMLText("add_document"));
-		$this->contentContainerStart();
 		
 		// Retrieve a list of all users and groups that have review / approve
 		// privileges.
 		$docAccess = $folder->getReadAccessList($enableadminrevapp, $enableownerrevapp);
+
+		$txt = $this->callHook('addDocumentPreForm');
+		if(is_string($txt))
+			echo $txt;
+		$this->contentContainerStart();
 ?>
 		<form class="form-horizontal" action="../op/op.AddDocument.php" enctype="multipart/form-data" method="post" id="form1" name="form1">
 		<?php echo createHiddenFieldWithKey('adddocument'); ?>
@@ -641,6 +645,9 @@ $(document).ready(function() {
 		</form>
 <?php
 		$this->contentContainerEnd();
+		$txt = $this->callHook('addDocumentPostForm');
+		if(is_string($txt))
+			echo $txt;
 		$this->contentEnd();
 		$this->htmlEndPage();
 
