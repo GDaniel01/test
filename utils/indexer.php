@@ -1,7 +1,5 @@
 <?php
-#require_once("../inc/inc.ClassSettings.php");
-include("../inc/inc.Settings.php");
-include("../inc/inc.Extension.php");
+require_once("../inc/inc.ClassSettings.php");
 
 function usage() { /* {{{ */
 	echo "Usage:\n";
@@ -52,7 +50,9 @@ if(isset($options['c'])) {
 
 if(isset($settings->_extraPath))
 	ini_set('include_path', $settings->_extraPath. PATH_SEPARATOR .ini_get('include_path'));
+ini_set('include_path', $settings->_rootDir. PATH_SEPARATOR .ini_get('include_path'));
 
+include("../inc/inc.Extension.php");
 require_once("SeedDMS/Core.php");
 if($settings->_fullSearchEngine == 'sqlitefts') {
 	$indexconf = array(
