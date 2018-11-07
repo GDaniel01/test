@@ -58,6 +58,8 @@ if (isset($_POST["pwd"]) && ($_POST["pwd"] != "")) {
 		$score = $ps->get_score();
 		if($score > $settings->_passwordStrength) {
 			if($settings->_passwordHistory > 0) {
+				if ($current_pwd == $_POST["pwd"]) // history doesn't have the initial pw stored yet
+					UI::exitError(getMLText("set_password"),getMLText("password_already_used"));
 				$phm = new SeedDMS_PasswordHistoryManager($db);
 				$oldpwd = $phm->search($user, md5($_POST["pwd"]));
 				if($oldpwd) {
