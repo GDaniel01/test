@@ -1047,7 +1047,7 @@ $(document).ready(function() {
 
 	function getDateChooser($defDate = '', $varName, $lang='') { /* {{{ */
 		$content = '
-			<span class="input-append date span12 datepicker" id="'.$varName.'date" data-date="'.$defDate.'" data-date-format="yyyy-mm-dd"'.($lang ? 'data-date-language="'.str_replace('_', '-', $lang).'"' : '').'>
+			<span class="input-append date span12 datepicker" id="'.$varName.'date" data-date="'.$defDate.'" data-selectmenu="presetexpdate" data-date-format="yyyy-mm-dd"'.($lang ? 'data-date-language="'.str_replace('_', '-', $lang).'"' : '').'>
 				<input class="span6" size="16" name="'.$varName.'" type="text" value="'.$defDate.'">
 				<span class="add-on"><i class="icon-calendar"></i></span>
 			</span>';

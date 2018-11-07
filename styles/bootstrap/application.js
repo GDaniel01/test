@@ -30,8 +30,9 @@ $(document).ready( function() {
 	$('.datepicker, #expirationdate, #fromdate, #todate, #createstartdate, #createenddate, #expirationstartdate, #expirationenddate')
 		.datepicker()
 		.on('changeDate', function(ev){
-			if(ev.date && $(ev.target).data('checkbox'))
-				$($(ev.target).data('checkbox')).prop('checked', false);
+			if(ev.date && $(ev.target).data('selectmenu')) {
+				$("#"+$(ev.target).data('selectmenu')).val('date');
+			}
 			$(ev.currentTarget).datepicker('hide');
 		});
 
