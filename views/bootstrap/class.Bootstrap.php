@@ -750,12 +750,12 @@ background-image: linear-gradient(to bottom, #882222, #111111);;
 			}
 			if (is_array($value)) {
 				foreach ($value as $subkey=>$subvalue) {
-					$resultsURI .= ($first ? "?" : "&").$key."%5B".$subkey."%5D=".$subvalue;
+					$resultsURI .= ($first ? "?" : "&").$key."%5B".$subkey."%5D=".urlencode($subvalue);
 					$first = false;
 				}
 			}
 			else {
-					$resultsURI .= ($first ? "?" : "&").$key."=".$value;
+					$resultsURI .= ($first ? "?" : "&").$key."=".urlencode($value);
 			}
 			$first = false;
 		}
