@@ -400,6 +400,9 @@ $('#loadmore').click(function(e) {
 			$documents = $folder->getDocuments($orderby);
 		$documents = SeedDMS_Core_DMS::filterAccess($documents, $user, M_READ);
 
+		$txt = $this->callHook('folderListPreContent', $folder, $subFolders, $documents);
+		if(is_string($txt))
+			echo $txt;
 		$i = 0;
 		if ((count($subFolders) > 0)||(count($documents) > 0)){
 			$txt = $this->callHook('folderListHeader', $folder, $orderby);
@@ -460,6 +463,10 @@ $('#loadmore').click(function(e) {
 				echo "<button id=\"loadmore\" style=\"width: 100%; margin-bottom: 20px;\" class=\"btn btn-default\" data-folder=\"".$folder->getId()."\"data-offset=\"".$maxItemsPerPage."\" data-limit=\"".$incItemsPerPage."\" data-all=\"".($i-$maxItemsPerPage)."\">".getMLText('x_more_objects', array('number'=>($i-$maxItemsPerPage)))."</button>";
 		}
 		else printMLText("empty_folder_list");
+
+		$txt = $this->callHook('folderListPostContent', $folder, $subFolders, $documents);
+		if(is_string($txt))
+			echo $txt;
 
 		echo "</div>\n"; // End of right column div
 		echo "</div>\n"; // End of div around left and right column
