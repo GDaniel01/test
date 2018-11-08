@@ -130,7 +130,7 @@ if(file_exists($settings->_rootDir . "view/".$theme."/languages/" . $lang . "/la
 
 if (!$user->isAdmin()) {
 	if($settings->_passwordExpiration > 0) {
-		if(basename($_SERVER['SCRIPT_NAME']) != 'out.ForcePasswordChange.php' && basename($_SERVER['SCRIPT_NAME']) != 'op.EditUserData.php') {
+		if(basename($_SERVER['SCRIPT_NAME']) != 'out.ForcePasswordChange.php' && basename($_SERVER['SCRIPT_NAME']) != 'op.EditUserData.php' && basename($_SERVER['SCRIPT_NAME']) != 'op.Logout.php') {
 			$pwdexp = $user->getPwdExpiration();
 			if(substr($pwdexp, 0, 10) != '0000-00-00') {
 				$pwdexpts = strtotime($pwdexp); // + $pwdexp*86400;
