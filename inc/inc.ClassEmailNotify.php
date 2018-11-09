@@ -46,13 +46,23 @@ class SeedDMS_EmailNotify extends SeedDMS_Notify {
 
 	protected $from_address;
 
-	function __construct($dms, $from_address='', $smtp_server='', $smtp_port='', $smtp_username='', $smtp_password='') { /* {{{ */
+	protected $lazy_ssl;
+
+	protected $debug;
+
+	function __construct($dms, $from_address='', $smtp_server='', $smtp_port='', $smtp_username='', $smtp_password='', $lazy_ssl=true) { /* {{{ */
 		$this->_dms = $dms;
 		$this->smtp_server = $smtp_server;
 		$this->smtp_port = $smtp_port;
 		$this->smtp_user = $smtp_username;
 		$this->smtp_password = $smtp_password;
 		$this->from_address = $from_address;
+		$this->lazy_ssl = $lazy_ssl;
+		$this->debug = false;
+	} /* }}} */
+
+	public function setDebug($debug=true) { /* {{{ */
+		$this->debug = (bool) $debug;
 	} /* }}} */
 
 	/**
@@ -82,15 +92,15 @@ class SeedDMS_EmailNotify extends SeedDMS_Notify {
 			return false;
 		}
 
-		$returnpath = '';
+		$returnpath = $this->from_address;
 		if(is_object($sender) && !strcasecmp(get_class($sender), $this->_dms->getClassname('user'))) {
 			$from = $sender->getFullName() ." <". $sender->getEmail() .">";
-			if($this->from_address)
-				$returnpath = $this->from_address;
+			if(!$returnpath)
+				$returnpath = $sender->getEmail();
 		} elseif(is_string($sender) && trim($sender) != "") {
 			$from = $sender;
-			if($this->from_address)
-				$returnpath = $this->from_address;
+			if(!$returnpath)
+				$returnpath = $sender;
 		} else {
 			$from = $this->from_address;
 		}
@@ -112,18 +122,20 @@ class SeedDMS_EmailNotify extends SeedDMS_Notify {
 
 		$mail_params = array();
 		if($this->smtp_server) {
+			if($this->debug)
+				$mail_params['debug'] = true;
 			$mail_params['host'] = $this->smtp_server;
 			if($this->smtp_port) {
 				$mail_params['port'] = $this->smtp_port;
 			}
 			if($this->smtp_user) {
 				$mail_params['auth'] = true;
-				// $mail_params['debug'] = true;
 				$mail_params['username'] = $this->smtp_user;
 				$mail_params['password'] = $this->smtp_password;
 			}
 			/* See ticket #384 */
-			$mail_params['socket_options'] = array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false));
+			if($this->lazy_ssl)
+				$mail_params['socket_options'] = array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false));
 
 			$mail = Mail::factory('smtp', $mail_params);
 		} else {
