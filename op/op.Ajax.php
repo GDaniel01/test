@@ -238,15 +238,19 @@ switch($command) {
 		if($user && $user->isAdmin()) {
 			if($user->getEmail()) {
 				$emailobj = new SeedDMS_EmailNotify($dms, $settings->_smtpSendFrom, $settings->_smtpServer, $settings->_smtpPort, $settings->_smtpUser, $settings->_smtpPassword);
+				$emailobj->setDebug(true);
 				$params = array();
 
-				if($emailobj->toIndividual($settings->_smtpSendFrom, $user, "testmail_subject", "testmail_body", $params)) {
-					echo json_encode(array("error"=>0, "msg"=>"Sending email succeded"));
+				ob_start();
+				$ret = $emailobj->toIndividual($settings->_smtpSendFrom, $user, "testmail_subject", "testmail_body", $params);
+				$debugoutput = ob_get_clean();
+				if($ret) {
+					echo json_encode(array("error"=>0, "msg"=>"Sending email succeded", "data"=>$debugoutput));
 				} else {
-					echo json_encode(array("error"=>1, "msg"=>"Sending email failed"));
+					echo json_encode(array("error"=>1, "msg"=>"Sending email failed", "data"=>$debugoutput));
 				}
 			} else {
-				echo json_encode(array("error"=>1, "msg"=>"No email address"));
+				echo json_encode(array("error"=>1, "msg"=>"Your account has no email address set", "data"=>""));
 			}
 		}
 		break; /* }}} */
@@ -407,19 +411,20 @@ switch($command) {
 							'groups'=>array_unique(array_merge($dnl['groups'], $fnl['groups']), SORT_REGULAR)
 						);
 						$docname = $document->getName();
-						if($document->remove()) {
-							/* Remove the document from the fulltext index */
-							if($settings->_enableFullSearch) {
-								$index = $indexconf['Indexer']::open($settings->_luceneDir);
-								if($index) {
-									$lucenesearch = new $indexconf['Search']($index);
-									if($hit = $lucenesearch->getDocument($_REQUEST['id'])) {
-										$index->delete($hit->id);
-										$index->commit();
-									}
-								}
-							}
 
+						if($settings->_enableFullSearch) {
+							$index = $indexconf['Indexer']::open($settings->_luceneDir);
+							$indexconf['Indexer']::init($settings->_stopWordsFile);
+						} else {
+							$index = null;
+							$indexconf = null;
+						}
+
+						$controller = Controller::factory('RemoveDocument', array('dms'=>$dms, 'user'=>$user));
+						$controller->setParam('document', $document);
+						$controller->setParam('index', $index);
+						$controller->setParam('indexconf', $indexconf);
+						if($controller->run()) {
 							if ($notifier){
 								$subject = "document_deleted_email_subject";
 								$message = "document_deleted_email_body";
