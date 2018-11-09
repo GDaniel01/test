@@ -59,29 +59,33 @@ class SeedDMS_Controller_UpdateDocument extends SeedDMS_Controller_Common {
 		$result = $this->callHook('updateDocument');
 		if($result === null) {
 			$filesize = SeedDMS_Core_File::fileSize($userfiletmp);
-			$contentResult=$document->addContent($comment, $user, $userfiletmp, utf8_basename($userfilename), $filetype, $userfiletype, $reviewers, $approvers, $version=0, $attributes, $workflow);
+			if($contentResult=$document->addContent($comment, $user, $userfiletmp, utf8_basename($userfilename), $filetype, $userfiletype, $reviewers, $approvers, $version=0, $attributes, $workflow)) {
 
-			if ($this->hasParam('expires')) {
-				if($document->setExpires($this->getParam('expires'))) {
-				} else {
+				if ($this->hasParam('expires')) {
+					if($document->setExpires($this->getParam('expires'))) {
+					} else {
+					}
 				}
-			}
 
-			if($index) {
-				$lucenesearch = new $indexconf['Search']($index);
-				if($hit = $lucenesearch->getDocument((int) $document->getId())) {
-					$index->delete($hit->id);
+				if($index) {
+					$lucenesearch = new $indexconf['Search']($index);
+					if($hit = $lucenesearch->getDocument((int) $document->getId())) {
+						$index->delete($hit->id);
+					}
+					$idoc = new $indexconf['IndexedDocument']($dms, $document, isset($settings->_converters['fulltext']) ? $settings->_converters['fulltext'] : null, !($filesize < $settings->_maxSizeForFullText));
+					if(!$this->callHook('preIndexDocument', $document, $idoc)) {
+					}
+					$index->addDocument($idoc);
+					$index->commit();
 				}
-				$idoc = new $indexconf['IndexedDocument']($dms, $document, isset($settings->_converters['fulltext']) ? $settings->_converters['fulltext'] : null, !($filesize < $settings->_maxSizeForFullText));
-				if(!$this->callHook('preIndexDocument', $document, $idoc)) {
-				}
-				$index->addDocument($idoc);
-				$index->commit();
-			}
 
-			if(!$this->callHook('postUpdateDocument', $document, $contentResult->getContent())) {
+				if(!$this->callHook('postUpdateDocument', $document, $contentResult->getContent())) {
+				}
+				$result = $contentResult->getContent();
+			} else {
+				$this->errormsg = 'error_update_document';
+				$result = false;
 			}
-			$result = $contentResult->getContent();
 		}
 
 		return $result;
