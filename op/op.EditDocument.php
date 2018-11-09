@@ -127,7 +127,7 @@ $controller->setParam('expires', $expires);
 $controller->setParam('sequence', $sequence);
 $controller->setParam('attributes', $attributes);
 if(!$controller->run()) {
-	if($controller->getErrorNo()) {
+	if($controller->getErrorMsg()) {
 		UI::exitError(getMLText("document_title", array("documentname" => $document->getName())), $controller->getErrorMsg());
 	}
 }

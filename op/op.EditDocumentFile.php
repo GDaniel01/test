@@ -70,7 +70,7 @@ $controller->setParam('comment', isset($_POST['comment']) ? $_POST['comment'] : 
 $controller->setParam('version', isset($_POST['version']) ? $_POST['version'] : '');
 $controller->setParam('public', isset($_POST['public']) ? $_POST['public'] : '');
 if(!$controller->run()) {
-	if($controller->getErrorNo()) {
+	if($controller->getErrorMsg()) {
 		UI::exitError(getMLText("document_title", array("documentname" => $document->getName())), $controller->getErrorMsg());
 	}
 }

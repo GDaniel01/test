@@ -79,7 +79,7 @@ $controller->setParam('comment', $comment);
 $controller->setParam('sequence', $sequence);
 $controller->setParam('attributes', $attributes);
 if(!$controller->run()) {
-	if($controller->getErrorNo()) {
+	if($controller->getErrorMsg()) {
 		UI::exitError(getMLText("folder_title", array("foldername" => $folder->getName())), $controller->getErrorMsg());
 	}
 }
