@@ -191,7 +191,6 @@ class SeedDMS_View_Settings extends SeedDMS_Bootstrap_Style {
 					dataType: "json",
 					data: {command: 'testmail'},
 					success: function(data) {
-						console.log(data);
 						noty({
 							text: data.msg,
 							type: (data.error) ? 'error' : 'success',
@@ -200,6 +199,9 @@ class SeedDMS_View_Settings extends SeedDMS_Bootstrap_Style {
 							theme: 'defaultTheme',
 							timeout: 1500,
 						});
+						if(data.data) {
+							$('#maildebug').text(data.data);
+						}
 					}
 				}); 
 			});
@@ -390,7 +392,7 @@ $this->showStartPaneContent('site', (!$currenttab || $currenttab == 'site'));
 <?php $this->showConfigText('settings_smtpSendFrom', 'smtpSendFrom'); ?>
 <?php $this->showConfigText('settings_smtpUser', 'smtpUser'); ?>
 <?php $this->showConfigText('settings_smtpPassword', 'smtpPassword', 'password'); ?>
-<?php $this->showConfigPlain(htmlspecialchars(getMLText('settings_smtpSendTestMail')), htmlspecialchars(getMLText('settings_smtpSendTestMail_desc')), '<a class="btn sendtestmail">'.getMLText('send_test_mail').'</a>'); ?>
+<?php $this->showConfigPlain(htmlspecialchars(getMLText('settings_smtpSendTestMail')), htmlspecialchars(getMLText('settings_smtpSendTestMail_desc')), '<a class="btn sendtestmail">'.getMLText('send_test_mail').'</a><div><pre id="maildebug">You will see debug messages here</pre></div>'); ?>
 <?php
 	$this->showEndPaneContent('system', $currenttab);
 
