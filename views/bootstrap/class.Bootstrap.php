@@ -1361,6 +1361,10 @@ $(document).ready(function() {
 			$objvalue = $attribute ? (is_object($attribute) ? $attribute->getValue() : $attribute) : '';
 			$content .= "<input type=\"text\" name=\"".$fieldname."[".$attrdef->getId()."]\" value=\"".htmlspecialchars($objvalue)."\"".((!$norequire && $attrdef->getMinValues() > 0) ? ' required' : '').' data-rule-email="true"'." />";
 			break;
+		case SeedDMS_Core_AttributeDefinition::type_float:
+			$objvalue = $attribute ? (is_object($attribute) ? $attribute->getValue() : $attribute) : '';
+			$content .= "<input type=\"text\" id=\"".$fieldname."_".$attrdef->getId()."\" name=\"".$fieldname."[".$attrdef->getId()."]\" value=\"".htmlspecialchars($objvalue)."\"".((!$norequire && $attrdef->getMinValues() > 0) ? ' required' : '')." data-rule-number=\"true\"/>";
+			break;
 		default:
 			if($valueset = $attrdef->getValueSetAsArray()) {
 				$content .= "<input type=\"hidden\" name=\"".$fieldname."[".$attrdef->getId()."]\" value=\"\"/>";
