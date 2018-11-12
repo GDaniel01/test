@@ -1,6 +1,21 @@
 --------------------------------------------------------------------------------
                      Changes in version 5.1.9
 --------------------------------------------------------------------------------
+- fix check for errors when a folder, document or document file is edited
+- use controller RemoveDocument when delete a document in op/op.Ajax.php
+  (partially solves #408)
+- catch error when updating a document fails (Closes #410)
+- use always 'Send from' address as Return-Path when set, only if not set the
+  logged in user's email will be used (Closes #418)
+- show the debug output when sendind a test mail
+- add hooks add hooks folderListPreContent and folderListPostContent in
+  class.ViewFolder.php
+- do not redirect to ForcePassword page if out.Logout.php was opened. This
+  allows to at least logout when the forced password change happens (Closes #421)
+- set selection menu for expiration to 'date' if date is entered (Closes #423)
+- check if a new password is identical to the current password and
+  password history check > 0 (Closes #424)
+- propperly encode url for following pages of search result (Closes $426)
 - set date of folder in webdav view
 - fix output of status on approval/review summary page
 - pass context to getAccessMode()
