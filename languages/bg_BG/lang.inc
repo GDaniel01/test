@@ -19,7 +19,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
-//    Translators: Admin (841)
+//    Translators: Admin (850)
 
 $text = array(
 '2_factor_auth' => '',
@@ -432,6 +432,7 @@ $text = array(
 'error_remove_permission' => '',
 'error_toogle_permission' => '',
 'error_transfer_document' => '',
+'error_update_document' => '',
 'error_uploading_reviewer_only' => '',
 'es_ES' => 'Испански',
 'event_details' => 'Детайли за събитието',
@@ -440,14 +441,14 @@ $text = array(
 'expired_at_date' => '',
 'expired_documents' => 'просрочени документи',
 'expires' => 'Изтича',
-'expire_by_date' => '',
+'expire_by_date' => 'Изтича на',
 'expire_in_1d' => '',
 'expire_in_1h' => '',
-'expire_in_1m' => '',
-'expire_in_1w' => '',
-'expire_in_1y' => '',
+'expire_in_1m' => 'Изтича след 1 месец',
+'expire_in_1w' => 'Изтича след 1 седмица',
+'expire_in_1y' => 'Изтича след 1 година',
 'expire_in_2h' => '',
-'expire_in_2y' => '',
+'expire_in_2y' => 'Изтича след 2 години',
 'expire_today' => '',
 'expire_tomorrow' => '',
 'expiry_changed_email' => 'Датата на изтичане променена',
@@ -971,7 +972,7 @@ $text = array(
 'select_one' => 'Избери един',
 'select_user' => '',
 'select_users' => 'Кликни да избереш потребители',
-'select_value' => '',
+'select_value' => 'Избери стойност',
 'select_workflow' => 'Избери процес',
 'send_email' => '',
 'send_login_data' => '',
@@ -1001,7 +1002,7 @@ $text = array(
 'settings_Authentication' => 'Настройки на автентификацията',
 'settings_autoLoginUser' => '',
 'settings_autoLoginUser_desc' => '',
-'settings_available_languages' => '',
+'settings_available_languages' => 'Налични езици',
 'settings_available_languages_desc' => '',
 'settings_backupDir' => '',
 'settings_backupDir_desc' => '',
@@ -1261,7 +1262,7 @@ $text = array(
 'settings_rootFolderID_desc' => 'ID на всяка корнева папка (може да не се променя)',
 'settings_SaveError' => 'Грешка при съхранение на конфигурацията',
 'settings_Server' => 'Настройки на сървъра',
-'settings_showFullPreview' => '',
+'settings_showFullPreview' => 'Покажи целия документ',
 'settings_showFullPreview_desc' => '',
 'settings_showMissingTranslations' => '',
 'settings_showMissingTranslations_desc' => '',
@@ -1511,7 +1512,7 @@ $text = array(
 'transmittal_comment' => '',
 'transmittal_name' => '',
 'transmittal_size' => '',
-'tree_loading' => '',
+'tree_loading' => 'Моля изчакайте, дървото с папки се зарежда!',
 'trigger_workflow' => 'Процес',
 'tr_TR' => 'Турски',
 'tuesday' => 'вторник',

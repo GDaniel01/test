@@ -19,7 +19,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
-//    Translators: Admin (1087), jeromerobert (50), lonnnew (9), Oudiceval (695)
+//    Translators: Admin (1087), jeromerobert (50), lonnnew (9), Oudiceval (697)
 
 $text = array(
 '2_factor_auth' => 'Authentification forte',
@@ -510,6 +510,7 @@ Le lien est valide jusqu’au [valid].
 'error_remove_permission' => 'Erreur lors de la suppression de permission',
 'error_toogle_permission' => 'Erreur lors de la modification de permission',
 'error_transfer_document' => 'Erreur lors du transfert du document',
+'error_update_document' => '',
 'error_uploading_reviewer_only' => 'Erreur lors de la création du document. Le document a un examinateur, mais pas d’approbateur.',
 'es_ES' => 'Espagnol',
 'event_details' => 'Détails de l\'événement',
@@ -1190,8 +1191,8 @@ Nom : [username]
 'seq_keep' => 'Conserver la position',
 'seq_start' => 'Première position',
 'sessions' => 'Utilisateurs en ligne',
-'setDateFromFile' => '',
-'setDateFromFolder' => '',
+'setDateFromFile' => 'Reprendre la date du fichier importé',
+'setDateFromFolder' => 'Reprendre la date du dossier importé',
 'settings' => 'Configuration',
 'settings_activate_module' => 'Activez le module',
 'settings_activate_php_extension' => 'Activez l\'extension PHP',

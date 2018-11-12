@@ -19,7 +19,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
-//    Translators: Admin (1747), archonwang (3), dgrutsch (9), netixw (14)
+//    Translators: Admin (1748), archonwang (3), dgrutsch (9), netixw (14)
 
 $text = array(
 '2_factor_auth' => '2-factor authentication',
@@ -510,6 +510,7 @@ The link is valid until [valid].
 'error_remove_permission' => 'Error while remove permission',
 'error_toogle_permission' => 'Error while changing permission',
 'error_transfer_document' => 'Error while transfering document',
+'error_update_document' => 'Error while updating document',
 'error_uploading_reviewer_only' => 'Error when creating the document. The document has a reviewer, but no approver.',
 'es_ES' => 'Spanish',
 'event_details' => 'Event details',
