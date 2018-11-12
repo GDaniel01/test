@@ -155,6 +155,7 @@ $('#loadmore').click(function(e) {
 		$orderby = $this->params['orderby'];
 		$cachedir = $this->params['cachedir'];
 		$previewwidth = $this->params['previewWidthList'];
+		$previewconverters = $this->params['previewConverters'];
 		$timeout = $this->params['timeout'];
 		$offset = $this->params['offset'];
 		$limit = $this->params['limit'];
@@ -162,6 +163,7 @@ $('#loadmore').click(function(e) {
 		header('Content-Type: application/json');
 
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
+		$previewer->setConverters($previewconverters);
 
 		$subFolders = $this->callHook('folderGetSubFolders', $folder, $orderby);
 		if($subFolders === null)
@@ -233,6 +235,7 @@ $('#loadmore').click(function(e) {
 		$maxItemsPerPage = $this->params['maxItemsPerPage'];
 		$incItemsPerPage = $this->params['incItemsPerPage'];
 		$previewwidth = $this->params['previewWidthList'];
+		$previewconverters = $this->params['previewConverters'];
 		$timeout = $this->params['timeout'];
 
 		$folderid = $folder->getId();
@@ -252,6 +255,7 @@ $('#loadmore').click(function(e) {
 		}
 
 		$previewer = new SeedDMS_Preview_Previewer($cachedir, $previewwidth, $timeout);
+		$previewer->setConverters($previewconverters);
 
 		echo $this->callHook('preContent');
 

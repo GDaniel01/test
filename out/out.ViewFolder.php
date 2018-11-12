@@ -73,6 +73,7 @@ if($view) {
 	$view->setParam('enableRecursiveCount', $settings->_enableRecursiveCount);
 	$view->setParam('maxRecursiveCount', $settings->_maxRecursiveCount);
 	$view->setParam('previewWidthList', $settings->_previewWidthList);
+	$view->setParam('previewConverters', isset($settings->_converters['preview']) ? $settings->_converters['preview'] : array());
 	$view->setParam('timeout', $settings->_cmdTimeout);
 	$view->setParam('maxItemsPerPage', $settings->_maxItemsPerPage);
 	$view->setParam('incItemsPerPage', $settings->_incItemsPerPage != 0 ? $settings->_incItemsPerPage : $settings->_maxItemsPerPage);
