@@ -19,7 +19,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
-//    Translators: Admin (2632), dgrutsch (22)
+//    Translators: Admin (2633), dgrutsch (22)
 
 $text = array(
 '2_factor_auth' => '2-Faktor Authentifizierung',
@@ -509,6 +509,7 @@ Der Link ist bis zum [valid] gültig.
 'error_remove_permission' => 'Fehler beim Entfernen der Berechtigung',
 'error_toogle_permission' => 'Fehler beim Ändern der Berechtigung',
 'error_transfer_document' => 'Fehler beim Übertragen des Dokuments',
+'error_update_document' => 'Fehler beim Aktualisieren des Dokuments',
 'error_uploading_reviewer_only' => 'Fehler beim Anlegen des Dokuments. Das Dokument besitzt einen Prufer, aber keinen Freigeber.',
 'es_ES' => 'Spanisch',
 'event_details' => 'Ereignisdetails',

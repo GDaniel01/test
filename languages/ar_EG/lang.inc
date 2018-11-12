@@ -19,7 +19,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
-//    Translators: Admin (1303)
+//    Translators: Admin (1305)
 
 $text = array(
 '2_factor_auth' => '',
@@ -479,6 +479,7 @@ URL: [url]',
 'error_remove_permission' => '',
 'error_toogle_permission' => '',
 'error_transfer_document' => '',
+'error_update_document' => '',
 'error_uploading_reviewer_only' => '',
 'es_ES' => 'الإسبانية',
 'event_details' => 'تفاصيل الحدث',
@@ -885,7 +886,7 @@ URL: [url]',
 'pl_PL' => 'ﺎﻠﺑﻮﻠﻧﺪﻳﺓ',
 'possible_substitutes' => '',
 'preset_expires' => 'ﺕﺍﺮﻴﺧ ﺍﻼﻨﺘﻫﺍﺀ',
-'preview' => '',
+'preview' => 'ﻢﻋﺎﻴﻧﺓ',
 'preview_converters' => '',
 'preview_images' => '',
 'preview_markdown' => '',
@@ -1106,7 +1107,7 @@ URL: [url]',
 'select_ind_reviewers' => 'اضغط لاختيار مراجع فردي',
 'select_ind_revisors' => '',
 'select_one' => 'اختر واحد',
-'select_user' => 'ﺎﺨﺘﻳﺍﺭ ﻢﺴﺘﺧﺪﻣ',
+'select_user' => 'ﺎﺨﺗﺭ ﻢﺴﺘﺧﺪﻣ',
 'select_users' => 'اضغط لاختيار المستخدم',
 'select_value' => 'ﺎﺨﺗﺭ ﺎﻠﻘﻴﻣﺓ ﺮﺟﺍﺀً',
 'select_workflow' => 'اختر مسار العمل',

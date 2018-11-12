@@ -19,7 +19,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
-//    Translators: Admin (1073), aydin (83)
+//    Translators: Admin (1074), aydin (83)
 
 $text = array(
 '2_factor_auth' => '',
@@ -322,7 +322,7 @@ URL: [url]',
 'docs_in_reception_no_access' => '',
 'docs_in_revision_no_access' => '',
 'document' => 'Doküman',
-'documentcontent' => '',
+'documentcontent' => 'Döküman İçeriği',
 'documents' => 'Dokümanlar',
 'documents_checked_out_by_you' => '',
 'documents_expired' => 'Süresi dolan belgeler',
@@ -485,6 +485,7 @@ URL: [url]',
 'error_remove_permission' => '',
 'error_toogle_permission' => '',
 'error_transfer_document' => '',
+'error_update_document' => '',
 'error_uploading_reviewer_only' => '',
 'es_ES' => 'İspanyolca',
 'event_details' => 'Etkinkil detayları',

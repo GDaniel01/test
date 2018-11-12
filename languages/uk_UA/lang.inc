@@ -19,7 +19,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
-//    Translators: Admin (1332)
+//    Translators: Admin (1334)
 
 $text = array(
 '2_factor_auth' => '',
@@ -491,6 +491,7 @@ URL: [url]',
 'error_remove_permission' => '',
 'error_toogle_permission' => '',
 'error_transfer_document' => '',
+'error_update_document' => '',
 'error_uploading_reviewer_only' => '',
 'es_ES' => 'Spanish',
 'event_details' => 'Інформація про подію',
@@ -727,7 +728,7 @@ URL: [url]',
 'login_ok' => 'Вхід успішний',
 'logout' => 'Вихід',
 'log_management' => 'Керування журналами',
-'lo_LA' => '',
+'lo_LA' => 'Лаоська',
 'manager' => 'Менеджер',
 'manager_of_group' => 'Менеджер групи',
 'mandatory_approvergroups' => 'Обов\'язкові групи затвержувачів',
@@ -1145,7 +1146,7 @@ URL: [url]',
 'select_one' => 'Оберіть',
 'select_user' => '',
 'select_users' => 'Оберіть користувачів',
-'select_value' => '',
+'select_value' => 'Обрати значення',
 'select_workflow' => 'Оберіть процес',
 'send_email' => '',
 'send_login_data' => '',

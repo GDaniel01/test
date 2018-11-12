@@ -19,7 +19,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
-//    Translators: Admin (747), archonwang (469), fengjohn (5), yang86 (1)
+//    Translators: Admin (749), archonwang (469), fengjohn (5), yang86 (1)
 
 $text = array(
 '2_factor_auth' => '双重认证',
@@ -491,6 +491,7 @@ URL: [url]',
 'error_remove_permission' => '移除权限时报错',
 'error_toogle_permission' => '修改权限时报错',
 'error_transfer_document' => '',
+'error_update_document' => '',
 'error_uploading_reviewer_only' => '',
 'es_ES' => '西班牙语',
 'event_details' => '错误详情',
@@ -1101,7 +1102,7 @@ URL: [url]',
 'select_attrdefgrp_show' => '',
 'select_attribute_value' => '',
 'select_category' => '选中分类',
-'select_group' => '',
+'select_group' => '选择用户组',
 'select_groups' => '点击选择组',
 'select_grp_approvers' => '点击选择组审批组',
 'select_grp_ind_approvers' => '点击选择组',
@@ -1119,7 +1120,7 @@ URL: [url]',
 'select_ind_reviewers' => '点击选择审核人',
 'select_ind_revisors' => '',
 'select_one' => '选择一个',
-'select_user' => '',
+'select_user' => '选择用户',
 'select_users' => '点击选择用户',
 'select_value' => '选择值',
 'select_workflow' => '选择工作流',
