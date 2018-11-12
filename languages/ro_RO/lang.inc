@@ -19,7 +19,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
-//    Translators: Admin (1072), balan (87)
+//    Translators: Admin (1073), balan (87)
 
 $text = array(
 '2_factor_auth' => '',
@@ -491,6 +491,7 @@ URL: [url]',
 'error_remove_permission' => '',
 'error_toogle_permission' => '',
 'error_transfer_document' => '',
+'error_update_document' => '',
 'error_uploading_reviewer_only' => '',
 'es_ES' => 'Spaniola',
 'event_details' => 'Detalii eveniment',
@@ -1125,7 +1126,7 @@ URL: [url]',
 'select_attrdefgrp_show' => '',
 'select_attribute_value' => '',
 'select_category' => 'Click pentru a selecta categoria',
-'select_group' => '',
+'select_group' => 'Selecteaza grupul',
 'select_groups' => 'Click pentru a selecta grupuri',
 'select_grp_approvers' => 'Click pentru a selecta grupul de aprobatori',
 'select_grp_ind_approvers' => '',

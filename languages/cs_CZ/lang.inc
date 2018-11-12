@@ -510,6 +510,7 @@ Odkaz je platný do [valid].
 'error_remove_permission' => 'Chyba při odebrání oprávnění',
 'error_toogle_permission' => 'Chyba při změně oprávnění',
 'error_transfer_document' => 'Chyba při přenosu dokumentu',
+'error_update_document' => '',
 'error_uploading_reviewer_only' => 'Chyba při vytváření dokumentu. Dokument má recenzenta, ale nemá schvalovatele.',
 'es_ES' => 'Španělština',
 'event_details' => 'Údaje akce',

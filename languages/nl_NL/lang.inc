@@ -19,7 +19,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
-//    Translators: Admin (757), gijsbertush (610), pepijn (45), reinoutdijkstra@hotmail.com (270)
+//    Translators: Admin (759), gijsbertush (610), pepijn (45), reinoutdijkstra@hotmail.com (270)
 
 $text = array(
 '2_factor_auth' => '2-factor-authenticatie',
@@ -491,6 +491,7 @@ De link is geldig tot [valid].
 'error_remove_permission' => 'Verwijder permissie',
 'error_toogle_permission' => 'Wijzig permissie',
 'error_transfer_document' => '',
+'error_update_document' => '',
 'error_uploading_reviewer_only' => '',
 'es_ES' => 'Spaans',
 'event_details' => 'Activiteit-details',
@@ -1139,7 +1140,7 @@ URL: [url]',
 'select_attrdefgrp_show' => 'Toon attribut definities-groep',
 'select_attribute_value' => '',
 'select_category' => 'klik om categorie te selecteren',
-'select_group' => '',
+'select_group' => 'Selecteer groep',
 'select_groups' => 'Klik om groep te selecteren',
 'select_grp_approvers' => 'Klik om beoordelaars te selecteren',
 'select_grp_ind_approvers' => 'Klik om beoordelaars te selecteren',
@@ -1157,7 +1158,7 @@ URL: [url]',
 'select_ind_reviewers' => 'Klik om individuele beoordelaar te selecteren',
 'select_ind_revisors' => 'Klik voor individuele herziners',
 'select_one' => 'Selecteer een',
-'select_user' => '',
+'select_user' => 'Selecteer gebruiker',
 'select_users' => 'Klik om gebruikers te selecteren',
 'select_value' => 'selecteer waarde',
 'select_workflow' => 'Selecteer workflow',

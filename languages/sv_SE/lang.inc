@@ -19,7 +19,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
-//    Translators: Admin (1157), MagnusI (649), tmichelfelder (106)
+//    Translators: Admin (1159), MagnusI (649), tmichelfelder (106)
 
 $text = array(
 '2_factor_auth' => '2-faktors autentisering',
@@ -504,6 +504,7 @@ Länken är giltig t o m [valid].
 'error_remove_permission' => 'Fel vid borttagen behörighet',
 'error_toogle_permission' => 'Fel vid förändring av behörighet',
 'error_transfer_document' => 'Fel vid förflyttning av dokument',
+'error_update_document' => '',
 'error_uploading_reviewer_only' => '',
 'es_ES' => 'Spanska',
 'event_details' => 'Händelseinställningar',
@@ -1140,7 +1141,7 @@ URL: [url]',
 'select_attrdefgrp_show' => 'Välj visingsalternativ',
 'select_attribute_value' => '',
 'select_category' => 'Klicka för att välja en kategori',
-'select_group' => '',
+'select_group' => 'Välj grupp',
 'select_groups' => 'Välj grupper',
 'select_grp_approvers' => 'Välj en grupp som ska godkänna',
 'select_grp_ind_approvers' => 'Klicka för att välja grupp',
@@ -1158,7 +1159,7 @@ URL: [url]',
 'select_ind_reviewers' => 'Välj en person som ska granska',
 'select_ind_revisors' => 'Klicka för att välja individuell reviderare',
 'select_one' => 'Välj',
-'select_user' => '',
+'select_user' => 'Välj användare',
 'select_users' => 'Välj användare',
 'select_value' => 'Välj värde',
 'select_workflow' => 'Välj arbetsflöde',

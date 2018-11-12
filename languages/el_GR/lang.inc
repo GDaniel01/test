@@ -19,7 +19,7 @@
 //    along with this program; if not, write to the Free Software
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
-//    Translators: Admin (274)
+//    Translators: Admin (280)
 
 $text = array(
 '2_factor_auth' => '',
@@ -32,7 +32,7 @@ $text = array(
 'access_inheritance' => '',
 'access_mode' => 'Είδος πρόσβασης',
 'access_mode_all' => 'Πλήρης πρόσβαση',
-'access_mode_none' => '',
+'access_mode_none' => 'Χωρίς πρόσβαση',
 'access_mode_read' => 'Δικαιώματα ανάγνωσης',
 'access_mode_readwrite' => 'Δικαιώματα ανάγνωσης-εγγραφής',
 'access_permission_changed_email' => '',
@@ -287,7 +287,7 @@ $text = array(
 'days' => 'μέρες',
 'debug' => '',
 'december' => 'Δεκέμβριος',
-'default_access' => '',
+'default_access' => 'Προεπιλεγμένο επίπεδο πρόσβασης',
 'default_keywords' => '',
 'definitions' => 'Ορισμοί',
 'delete' => 'Διαγραφή',
@@ -432,6 +432,7 @@ $text = array(
 'error_remove_permission' => '',
 'error_toogle_permission' => '',
 'error_transfer_document' => '',
+'error_update_document' => '',
 'error_uploading_reviewer_only' => '',
 'es_ES' => 'Spanish/Ισπανικά',
 'event_details' => '',
@@ -467,7 +468,7 @@ $text = array(
 'files' => 'Αρχεία',
 'files_deletion' => 'Διαγραφή αρχείων',
 'files_deletion_warning' => '',
-'files_loading' => '',
+'files_loading' => 'Παρακαλώ περιμένετε, μέχρι να φορτωθεί το αρχείο',
 'file_size' => 'Μέγεθος αρχείου',
 'filter_for_documents' => '',
 'filter_for_folders' => '',
@@ -619,7 +620,7 @@ $text = array(
 'last_update' => 'Τελευταία Αναναίωση',
 'legend' => 'Ιστορικό',
 'librarydoc' => '',
-'linked_documents' => '',
+'linked_documents' => 'Σχετικά Έγγραφα',
 'linked_files' => '',
 'linked_to_current_version' => '',
 'linked_to_document' => '',
@@ -980,9 +981,9 @@ URL: [url]',
 'select_ind_reviewers' => '',
 'select_ind_revisors' => '',
 'select_one' => 'Επιλογή',
-'select_user' => '',
+'select_user' => 'Επιλογή χρήστη',
 'select_users' => '',
-'select_value' => '',
+'select_value' => 'Επιλέξτε τιμή',
 'select_workflow' => '',
 'send_email' => '',
 'send_login_data' => '',
