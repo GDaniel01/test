@@ -144,9 +144,8 @@ if ($action == "setowner") {
 			foreach ($notifyList["groups"] as $grp) {
 				$notifier->toGroup($user, $grp, $subject, $message, $params);
 			}
-//			$notifier->toIndividual($user, $oldOwner, $subject, $message, $params);
-
 		}
+		$session->setSplashMsg(array('type'=>'success', 'msg'=>getMLText('splash_setowner')));
 	} else {
 		UI::exitError(getMLText("folder_title", array("foldername" => $folder->getName())),getMLText("set_owner_error"));
 	}
@@ -176,7 +175,7 @@ else if ($action == "notinherit") {
 			foreach ($notifyList["groups"] as $grp) {
 				$notifier->toGroup($user, $grp, $subject, $message, $params);
 			}
-
+		$session->setSplashMsg(array('type'=>'success', 'msg'=>getMLText('splash_notinherit_access')));
 		}
 	}
 	if($folder->setDefaultAccess($defAccess)) {
@@ -238,8 +237,8 @@ else if ($action == "inherit") {
 			foreach ($notifyList["groups"] as $grp) {
 				$notifier->toGroup($user, $grp, $subject, $message, $params);
 			}
-
 		}
+		$session->setSplashMsg(array('type'=>'success', 'msg'=>getMLText('splash_inherit_access')));
 	}
 }
 
@@ -265,8 +264,8 @@ else if ($action == "setdefault") {
 			foreach ($notifyList["groups"] as $grp) {
 				$notifier->toGroup($user, $grp, $subject, $message, $params);
 			}
-
 		}
+		$session->setSplashMsg(array('type'=>'success', 'msg'=>getMLText('splash_set_default_access')));
 	}
 }
 
@@ -278,6 +277,7 @@ else if ($action == "editaccess") {
 	else if (isset($groupid)) {
 		$folder->changeAccess($mode, $groupid, false);
 	}
+	$session->setSplashMsg(array('type'=>'success', 'msg'=>getMLText('splash_edit_access')));
 }
 
 // Delete Permission ------------------------------------------------------
@@ -289,6 +289,7 @@ else if ($action == "delaccess") {
 	else if (isset($groupid)) {
 		$folder->removeAccess($groupid, false);
 	}
+	$session->setSplashMsg(array('type'=>'success', 'msg'=>getMLText('splash_delete_access')));
 }
 
 // Add new permission -----------------------------------------------------
@@ -300,6 +301,7 @@ else if ($action == "addaccess") {
 	if (isset($groupid) && $groupid != -1) {
 		$folder->addAccess($mode, $groupid, false);
 	}
+	$session->setSplashMsg(array('type'=>'success', 'msg'=>getMLText('splash_add_access')));
 }
 
 add_log_line();
