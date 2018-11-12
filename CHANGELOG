@@ -1,6 +1,8 @@
 --------------------------------------------------------------------------------
                      Changes in version 5.1.9
 --------------------------------------------------------------------------------
+- show messages when access rights for folders are being changed
+- set date field in mails send (See #334)
 - fix check for errors when a folder, document or document file is edited
 - use controller RemoveDocument when delete a document in op/op.Ajax.php
   (partially solves #408)
