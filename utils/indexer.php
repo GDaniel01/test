@@ -85,16 +85,15 @@ function tree($dms, $index, $indexconf, $folder, $indent='') { /* {{{ */
 		$lucenesearch = new $indexconf['Search']($index);
 		if(!($hit = $lucenesearch->getDocument($document->getId()))) {
 			try {
-#				$index->addDocument(new $indexconf['IndexedDocument']($dms, $document, isset($settings->_converters['fulltext']) ? $settings->_converters['fulltext'] : null, false, $settings->_cmdTimeout));
 				$idoc = new $indexconf['IndexedDocument']($dms, $document, isset($settings->_converters['fulltext']) ? $settings->_converters['fulltext'] : null, false, $settings->_cmdTimeout);
-                                if(isset($GLOBALS['SEEDDMS_HOOKS']['indexDocument'])) {
-                                	foreach($GLOBALS['SEEDDMS_HOOKS']['indexDocument'] as $hookObj) {
-                                        	if (method_exists($hookObj, 'preIndexDocument')) {
-                                                	$hookObj->preIndexDocument(null, $document, $idoc);
-                                                }
-                           		}
-                		}
-                                $index->addDocument($idoc);
+				if(isset($GLOBALS['SEEDDMS_HOOKS']['indexDocument'])) {
+					foreach($GLOBALS['SEEDDMS_HOOKS']['indexDocument'] as $hookObj) {
+						if (method_exists($hookObj, 'preIndexDocument')) {
+							$hookObj->preIndexDocument(null, $document, $idoc);
+						}
+					}
+				}
+				$index->addDocument($idoc);
 				echo " (Document added)\n";
 			} catch(Exception $e) {
 				echo " (Timeout)\n";
@@ -111,17 +110,15 @@ function tree($dms, $index, $indexconf, $folder, $indent='') { /* {{{ */
 			} else {
 				$index->delete($hit->id);
 				try {
-#					$index->addDocument(new $indexconf['IndexedDocument']($dms, $document, isset($settings->_converters['fulltext']) ? $settings->_converters['fulltext'] : null, false, $settings->_cmdTimeout));
-                                        $idoc = new $indexconf['IndexedDocument']($dms, $document, isset($settings->_converters['fulltext']) ? $settings->_converters['fulltext'] : null, false, $settings->_cmdTimeout);
-						if(isset($GLOBALS['SEEDDMS_HOOKS']['indexDocument'])) {
-                                                	foreach($GLOBALS['SEEDDMS_HOOKS']['indexDocument'] as $hookObj) {
-                                                        	if (method_exists($hookObj, 'preIndexDocument')) {
-                                                                	$hookObj->preIndexDocument(null, $document, $idoc);
-                                                                }
-                                                        }
-                                                }
-                                        $index->addDocument($idoc);
-
+					$idoc = new $indexconf['IndexedDocument']($dms, $document, isset($settings->_converters['fulltext']) ? $settings->_converters['fulltext'] : null, false, $settings->_cmdTimeout);
+					if(isset($GLOBALS['SEEDDMS_HOOKS']['indexDocument'])) {
+						foreach($GLOBALS['SEEDDMS_HOOKS']['indexDocument'] as $hookObj) {
+							if (method_exists($hookObj, 'preIndexDocument')) {
+								$hookObj->preIndexDocument(null, $document, $idoc);
+							}
+						}
+					}
+					$index->addDocument($idoc);
 					echo " (Document updated)\n";
 				} catch(Exception $e) {
 					echo " (Timeout)\n";
